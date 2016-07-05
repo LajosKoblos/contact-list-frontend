@@ -1,0 +1,442 @@
+@import 'colors';
+@import 'mixins';
+@import 'fonts';
+@import 'keyframes';
+
+* {
+	outline: none;
+}
+
+input, textarea, select {
+	appearance: none;
+	-webkit-appearance: none;
+	border: 1px solid #FFF;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	background-color: $light-gray;
+	font-family: 'Open Sans', Times New Roman, sans-serif;
+	color: $black;
+	font-size: 16px;
+	overflow: hidden;
+}
+
+a, link {
+	text-decoration: none;
+	color: $black;
+}
+
+div, input, textarea, select {
+	box-sizing: border-box;
+}
+
+ul, li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* TEXT CLASSES */
+
+.ge-text-blue {
+	color: $blue;
+	&:hover { color: $blue-hover; }
+	&:active { color: $blue-active; }
+}
+
+.ge-text-green {
+	color: $green;
+	&:hover { color: $green-hover; }
+	&:active { color: $green-active; }
+}
+
+.ge-text-red {
+	color: $red;
+	&:hover { color: $red-hover; }
+	&:active { color: $red-active; }
+}
+
+/* BG CLASSES */
+
+.ge-bg-x-light-gray {
+	background-color: $x-light-gray;
+}
+
+.ge-bg-light-gray {
+	background-color: $light-gray;
+}
+
+.ge-bg-white {
+	background-color: $white;
+}
+
+
+/* ==== HEADER ==== */
+header {
+	position: relative;
+	height: 60px;
+	background-color: $white;
+	border-bottom: 1px solid $dark-gray;
+
+	#ge-header-left, #ge-header-right {
+		position: absolute;
+	}
+
+	#ge-header-left {
+		top: 0;
+		left: 30px;
+
+		#ge-header-logo, #ge-header-tabs {
+			float: left;
+		}
+
+		#ge-header-logo {
+			line-height: 60px;
+			height: 60px;
+			padding-left: 50px;
+			background: url('ge-logo.svg') no-repeat left center;
+			@include background-size(40px 40px);
+			color: $blue;
+			font-weight: 600;
+			@include animation('logo-bounce 1s 1');
+		}
+
+		#ge-header-tabs {
+			margin-left: 30px;
+			line-height: 60px;
+
+			li {
+				float: left;
+				height: 100%;
+
+				a {
+					display: block;
+					padding: 0 15px;
+					@include transition(background-color, .25s);
+
+					.fa {
+						margin-right: 5px;
+					}
+
+					&:hover {
+						background-color: $light-gray;
+					}
+				}
+			}
+		}
+	}
+
+	#ge-header-right {
+		right: 30px;
+		top: 15px;
+		height: 30px;
+		line-height: 30px;
+
+		#ge-header-search, #ge-header-logout {
+			display: block;
+			float: left;
+			height: 30px;
+			line-height: 30px;
+			padding: 0 15px;
+			@include border-radius(5px);
+		}
+
+		#ge-header-search {
+			margin-right: 10px;
+			background-color: $light-gray;
+
+			span {
+				margin-right: 5px;
+				font-style: italic;
+			}
+		}
+
+		#ge-header-logout {
+			text-align: center;
+			background-color: $blue;
+			@include transition(background-color, .25s);
+
+			&:hover {
+				background-color: $blue-hover;
+			}
+
+			&:active {
+				background-color: $blue-active;
+			}
+
+			.fa {
+				color: $white;
+			}
+		}
+	}
+
+	&::after {
+		@include clearfix;
+	}
+}
+
+// /* ==== CONTENT ==== */
+#ge-content {
+	flex: auto;
+	display: flex;
+	flex-direction: row;
+}
+
+.ge-list {
+	display: flex;
+	flex-direction: column;
+	flex: 25;
+	border-right: 1px solid $dark-gray;
+
+	.ge-list-title, .ge-list-search {
+		height: 50px;
+		line-height: 50px;
+		padding: 0 10px;
+		background-color: $gray;
+		border-bottom: 1px solid $dark-gray;
+	}
+
+	.ge-list-title {
+		color: $blue;
+		text-transform: uppercase;
+	}
+
+	.ge-list-search {
+
+		input {
+			@include border-radius(5px);
+			width: 100%;
+			padding: 5px 10px;
+			border: 1px solid $dark-gray;
+			font-size: 14px;
+			@include transition(border-color, .25s);
+
+			&:hover, &:focus {
+				border-color: $blue;
+			}
+		}
+	}
+
+	ul {
+		flex: 1 1 auto;
+		overflow-y: auto;
+		height: 0;
+
+		li {
+			position: relative;
+			cursor: pointer;
+			padding: 10px 15px;
+			@include transition(background-color, .25s);
+			overflow: hidden;
+
+			.ge-list-item-actions {
+				position: absolute;
+				top: 50%;
+				right: -100px;
+				z-index: 1;
+				@include translate(0, -50%);
+				@include transition(right, .25s);
+
+				.ge-action {
+					font-size: 16px;
+					width: 25px;
+					height: 25px;
+					line-height: 25px;
+					@include border-radius(25px);
+				}
+			}
+
+			&:hover {
+				background-color: rgba($blue, .1);
+				color: $blue;
+
+				.ge-list-item-actions {
+					right: 10px;
+				}
+			}
+		
+			&:not(:last-child) {
+				border-bottom: 1px solid $gray;
+			}
+		}
+
+		.ge-list-item-selected {
+			position: relative;
+			color: $blue;
+			padding-left: 20px;
+			font-style: italic;
+
+			&::before {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				content: "";
+				border-left: 5px solid $dark-gray;
+				border-top: 5px solid transparent;
+				border-bottom: 5px solid transparent;
+				width: 0;
+				height: 0;
+				@include translate(0, -50%);
+			}
+
+			&::after {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				content: "";
+				display: block;
+				background-color: rgba($gray, .3);
+			}
+		}
+	}
+
+	.ge-list-footer {
+
+		.ge-action {
+			font-size: 24px;
+			width: 40px;
+			height: 40px;
+			line-height: 40px;
+			@include border-radius(40px);
+			margin-left: 10px;
+		}
+	}
+}
+
+.ge-footer-bar {
+	height: 50px;
+	line-height: 50px;
+	padding: 0 10px;
+	border-top: 1px solid $dark-gray;
+	text-align: right;
+}
+
+.ge-details {
+	display: flex;
+	flex-direction: column;
+	flex: 50;
+	background-color: $white;
+
+	.ge-details-content {
+		flex: auto;
+		padding: 30px;
+
+		.ge-details-title {
+			font-size: 48px;
+			border-bottom: 1px solid $gray;
+			padding-bottom: 30px;
+			margin-bottom: 15px;
+		}
+
+		.ge-details-subtitle {
+			margin-bottom: 30px;
+			text-align: right;
+
+			.fa, a {
+				color: $blue;
+			}
+
+			a {
+				border-bottom: 1px dashed $blue;
+
+				&:hover {
+					border-color: transparent;
+				}
+			}
+		}
+
+		.ge-details-list {
+			font-size: 12px;
+
+			li {
+				overflow: hidden;
+
+				& > div {
+					float: left;
+					padding: 10px 5px;
+
+					&::after {
+						@include clearfix;
+					}
+				}
+
+				.ge-details-list-key {
+					width: 30%;
+
+					.fa {
+						width: 15px;
+						text-align: center;
+						color: $blue;
+						margin-right: 5px;
+					}
+				}
+
+				.ge-details-list-value {
+					width: 70%;
+					font-weight: 600;
+				}
+
+				&:last-child {
+					@include border-bottom-radius(5px);
+				}
+
+				&:nth-child(even) {
+					background-color: rgba($blue, .1);
+
+					.ge-details-list-key {
+						border-right: 1px solid $gray;
+					}
+				}
+
+				&:nth-child(odd) {
+					background-color: $white;
+
+					.ge-details-list-key {
+						border-right: 1px solid $light-gray;
+					}
+				}
+			}
+		}
+	}
+
+	.ge-details-footer {
+
+		.ge-action {
+			font-size: 24px;
+			width: 40px;
+			height: 40px;
+			line-height: 40px;
+			@include border-radius(40px);
+			margin-left: 10px;
+		}
+	}
+}
+
+.ge-action {
+	display: inline-block;
+	text-align: center;
+	@include transition(all, .25s);
+
+	&:hover {
+		background-color: $gray;
+	}
+}
+
+.ge-action-animated {
+
+	&:hover {
+		@include rotate(90);
+	}
+}

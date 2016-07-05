@@ -1,0 +1,10 @@
+@import 'mixins';
+
+@include keyframes('logo-bounce') {
+	0% {
+		background-position: 0 -100px;
+	}
+	100% {
+		background-position: left center;
+	}
+}
