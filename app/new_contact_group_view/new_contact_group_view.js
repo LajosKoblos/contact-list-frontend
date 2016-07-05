@@ -9,20 +9,23 @@ angular.module('myApp.new_contact_group_view', ['ngRoute'])
 });
 }])
 
-.controller('newContactGroupViewCtrl', [function($scope) {
+.controller('newContactGroupViewCtrl', function($scope) {
+    console.log("newContactGroupView controller online!")
   $scope.contactGroups = [];
   $scope.new_contact_group = "";
+    $scope.status ="";
 
   $scope.createNewContactGroup = function(){
-    if (!$scope.new_contact_group){return}
+    if (!$scope.new_contact_group){$scope.status= "Name missing";return}
     if ($scope.contactGroups.indexOf($scope.new_contact_group) == -1) {
-      $scope.contactGroups.push($scope.new_contact_group);
+        $scope.contactGroups.push($scope.new_contact_group);
+        $scope.status = "New Contact Group created with name: "+$scope.new_contact_group;
     }
     else {
-      $scope.errortext = ""
+      $scope.status = "A contact group already exists with this name: "+$scope.new_contact_group;
     }
 
   }
 
 
-}]);
+});

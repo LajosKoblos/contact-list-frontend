@@ -1,13 +1,36 @@
+<html ng-app="myApp">
+<body ng-controller ="newContactGroupViewCtrl">
 <div>
+    <h2>
+        Create New Contact Group
+    </h2>
 
     <div>
-        <input type="text" placeholder="Enter contact group name" ng-model="new_contact_group" >  </input>
-    </div>
-    <div>
+        <input type="text" placeholder="Enter contact group name" maxlength="15" ng-model="new_contact_group" >
+        </input>
         <button ng-click="createNewContactGroup()">
-            Create
+        Create
         </button>
 
     </div>
+    <div>
 
     </div>
+
+    <div ng-cloak style="max-width:400px;">
+
+        <ul ng-hide ="contactGroups.length == 0">
+            Contact Groups
+        <ul ng-repeat="x in contactGroups">{{x}}</ul>
+
+        </ul>
+
+        <p>{{status}}</p>
+    </div>
+
+
+    </div>
+
+</body>
+
+</html>
