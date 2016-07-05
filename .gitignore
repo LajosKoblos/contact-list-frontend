@@ -1,3 +1,4 @@
+app/bundle.js
 logs/*
 !.gitkeep
 node_modules/
