@@ -1,7 +1,7 @@
 var fs = require('fs');
 const execSync = require('child_process').execSync;
 
-repos = ["contact-list-frontend-auth-service", "contact-list-frontend-contact-group-service", "contact-list-frontend-contact-service"]
+repos = ["contact-list-frontend-auth-service", "contact-list-frontend-contact-group-service", "contact-list-frontend-contact-service", "contact-list-frontend-user-service"]
 
 process.chdir('..');
 

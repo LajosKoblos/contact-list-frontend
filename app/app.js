@@ -3,6 +3,7 @@
 require("authService");
 require("contactService");
 require("contactGroupService");
+require("userService");
 
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
@@ -10,6 +11,7 @@ angular.module('myApp', [
   'authServiceModule',
   'contactServiceModule',
   'contactGroupServiceModule',
+  'userServiceModule',
   'myApp.view1',
   'myApp.view2',
   'myApp.version'
