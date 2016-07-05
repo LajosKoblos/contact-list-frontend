@@ -14,11 +14,11 @@ angular.module('myApp.user_creation', ['ngRoute'])
         $scope.password = "";
         $scope.role = "USER";
 
-        $scope.createUser = function(){
+        $scope.createUser = function () {
             var userResource = {
-                userName : $scope.username,
-                password : $scope.password,
-                role : $scope.role
+                userName: $scope.username,
+                password: $scope.password,
+                role: $scope.role
             };
 
             console.log(userResource);

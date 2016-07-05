@@ -1,14 +1,16 @@
 <h1>Create user</h1>
 
 <h3>Username</h3>
-<input type="text" ng-modell="username"/>
+<input type="text" ng-model="username"/>
 <h3>Password</h3>
-<input type="password" ng-modell="password"/>
+<input type="password" ng-model="password"/>
 <h3>Role</h3>
-<select ng-modell="role">
+<select ng-model="role">
     <option value="ADMIN" >Admin</option>
     <option value="USER" >User</option>
 </select>
+
+<span ng-bind="username"></span>
 
 <br>
 
