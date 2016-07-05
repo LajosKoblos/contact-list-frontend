@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('myApp.groups', ['ngRoute'])
+angular.module('myApp.contactGroupView', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/groups', {
-    templateUrl: 'contactGroupView/contactGroupView.html',
+  $routeProvider.when('/contact_group', {
+    templateUrl: 'contactGroupView/contact_group_view.html',
     controller: 'GroupsCtrl'
   });
 }])
