@@ -38,8 +38,8 @@
   },
   "dependencies": {
     "angular": "latest",
-    "contactService": "..\\contact-list-frontend-contact-service\\contact-list-frontend-contact-service.tgz",
-    "authService": "..\\contact-list-frontend-auth-service\\contact-list-frontend-auth-service.tgz",
-    "contactGroupService": "..\\contact-list-frontend-contact-group-service\\contact-list-frontend-contact-group-service.tgz"
+    "contactService": "..\\contact-list-frontend-contact-service\\contactService-0.0.1.tgz",
+    "authService": "..\\contact-list-frontend-auth-service\\authService-0.0.1.tgz",
+    "contactGroupService": "..\\contact-list-frontend-contact-group-service\\contactGroupService-0.0.1.tgz"
   }
 }
