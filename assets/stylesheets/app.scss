@@ -46,7 +46,7 @@ ul, li {
 	padding: 0;
 }
 
-/* TEXT CLASSES */
+/* ==== TEXT CLASSES ==== */
 
 .ge-text-blue {
 	color: $blue;
@@ -66,7 +66,7 @@ ul, li {
 	&:active { color: $red-active; }
 }
 
-/* BG CLASSES */
+/* ==== BG CLASSES ==== */
 
 .ge-bg-x-light-gray {
 	background-color: $x-light-gray;
@@ -185,7 +185,7 @@ header {
 	}
 }
 
-// /* ==== CONTENT ==== */
+/* ==== CONTENT ==== */
 #ge-content {
 	flex: auto;
 	display: flex;
@@ -202,7 +202,7 @@ header {
 		height: 50px;
 		line-height: 50px;
 		padding: 0 10px;
-		background-color: $gray;
+		background-color: rgba($gray, .5);
 		border-bottom: 1px solid $dark-gray;
 	}
 
@@ -222,7 +222,7 @@ header {
 			@include transition(border-color, .25s);
 
 			&:hover, &:focus {
-				border-color: $blue;
+				border-color: $x-dark-gray;
 			}
 		}
 	}
@@ -438,5 +438,97 @@ header {
 
 	&:hover {
 		@include rotate(90);
+	}
+}
+
+/* ==== FORMS ==== */
+
+.ge-form {
+
+	.ge-form-title {
+		font-size: 20px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid $gray;
+		margin-bottom: 10px;
+	}
+
+	.ge-form-group {
+		margin-bottom: 10px;
+
+		input {
+			width: 100%;
+			@include border-radius(5px);
+			padding: 10px 10px;
+			font-size: 14px;
+		}
+
+		input[type="text"], input[type="password"] {
+			border: 1px solid $gray;
+			@include transition(border-color, .25s);
+
+			&:hover, &:focus {
+				border-color: $x-dark-gray;
+			}
+		}
+
+		input[type="submit"] {
+			text-transform: uppercase;
+			background-color: $blue;
+			color: $white;
+			border: 1px solid $blue;
+			@include transition(all, .25s);
+
+			&:hover {
+				background-color: $blue-hover;
+				border-color: $blue-hover;
+			}
+
+			&:active {
+				background-color: $blue-active;
+				border-color: $blue-active;
+			}
+		}
+
+		.ge-form-error {
+			margin-top: 5px;
+			font-size: 12px;
+			color: $red;
+		}
+	}
+
+	.ge-form-group-with-errors {
+
+		input[type="text"], input[type="password"] {
+			border-color: $red;
+
+			&:hover, &:focus {
+				border-color: $red;
+			}
+		}
+	}
+}
+
+#ge-login-box {
+	position: absolute;
+	top: 150px;
+	left: 50%;
+	width: 300px;
+	background-color: $white;
+	padding: 30px;
+	@include border-radius(30px);
+	@include translate(-50%, 0);
+
+	.ge-form-title {
+		text-align: center;
+	}
+
+	#ge-login-box-logo {
+		height: 60px;
+		background: url('ge-logo.svg') no-repeat center center;
+		@include background-size(50px 50px);
+		color: $blue;
+		font-weight: 600;
+		@include animation('logo-bounce-main 1s 1');
+		margin-bottom: 10px;
 	}
 }
