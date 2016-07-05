@@ -1,0 +1,14 @@
+<input id="filterName"
+       type="search"
+       placeholder="Search in contacts by name"
+       minlength="3"
+       ng-model="filterName"
+       ng-model-options="{debounce : 250}">
+
+
+<ul>
+    <li ng-repeat="contact in contactList | filter:filterName">
+        {{ contact.firstName }} , {{ contact.lastName }}
+    </li>
+</ul>
+
