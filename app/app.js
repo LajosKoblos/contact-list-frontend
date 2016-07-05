@@ -14,7 +14,7 @@ angular.module('myApp', [
   'userServiceModule',
   'myApp.view1',
   'myApp.view2',
-  'myApp.groups',
+  'myApp.contactGroupView',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
