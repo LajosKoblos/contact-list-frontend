@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.user_creation', ['ngRoute'])
+angular.module('myApp.user_creation', ['ngRoute','userServiceModule'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/user_creation', {
@@ -9,7 +9,7 @@ angular.module('myApp.user_creation', ['ngRoute'])
         });
     }])
 
-    .controller('UserCreationController', function ($scope) {
+    .controller('UserCreationController', function ($scope, userService) {
         $scope.username = "";
         $scope.password = "";
         $scope.role = "USER";
@@ -22,6 +22,7 @@ angular.module('myApp.user_creation', ['ngRoute'])
             };
 
             console.log(userResource);
-            //UserService.createUser(userResource);
+            var user_creation = userService.createUser(userResource);
+            user_creation.then(function(data){console.log(data)});
         };
     });
