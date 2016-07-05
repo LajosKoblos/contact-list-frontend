@@ -6,7 +6,6 @@ angular.module('myApp', [
   'myApp.view1',
   'myApp.view2',
   'myApp.version',
-  'myApp.user_list',
   'myApp.change_password'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
