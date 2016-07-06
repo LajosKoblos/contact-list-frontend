@@ -3,7 +3,7 @@
 angular.module('myApp.new_contact_group_view', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/new_contact_group_view', {
+        $routeProvider.when('/groups/new', {
             templateUrl: 'new_contact_group_view/new_contact_group_view.html',
             controller: 'newContactGroupViewCtrl'
         });
