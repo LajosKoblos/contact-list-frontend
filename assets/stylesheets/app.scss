@@ -193,7 +193,7 @@ header {
 	flex-direction: row;
 }
 
-.ge-list {
+.ge-list, .ge-search {
 	display: flex;
 	flex-direction: column;
 	flex: 25;
@@ -207,10 +207,13 @@ header {
 		border-bottom: 1px solid $dark-gray;
 	}
 
-	.ge-list-title {
+	.ge-list-title, .ge-search-title {
 		color: $blue;
 		text-transform: uppercase;
 	}
+}
+
+.ge-list {
 
 	.ge-list-search {
 
@@ -532,5 +535,12 @@ header {
 		font-weight: 600;
 		@include animation('logo-bounce-main 1s 1');
 		margin-bottom: 10px;
+	}
+}
+
+#ge-search-box {
+
+	.ge-form-group {
+		padding: 5px 10px;
 	}
 }
