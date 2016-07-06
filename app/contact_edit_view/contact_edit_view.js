@@ -1,45 +1,52 @@
 'use strict';
 
-angular.module('myApp.contact_edit_view', ['ngRoute'])
+angular.module('myApp.contact_edit', ['ngRoute', 'contactServiceModule'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/contact_edit/:groupid/:contactid', {
             templateUrl: 'contact_edit_view/contact_edit_view.html',
-            controller: 'contactEditViewCtrl'
-        }).
-        otherwise({
-            redirectTo: '/'
-        });
+            controller: 'contactEditCtrl'
+        }).when('/contact_edit/new/', {
+            templateUrl: 'contact_edit_view/contact_edit_view.html',
+            controller: 'contactEditCtrl'
+        })
+            .otherwise({
+                redirectTo: '/'
+            });
     }])
 
-    .controller('contactEditViewCtrl', function ($scope, $routeParams) {
-        $scope.groupid = $routeParams.groupid;
-        $scope.contactid = $routeParams.contactid;
-
-        $scope.thisContact = {
-            groupid: null,
-            contactid: null,
-            firstname: "",
-            lastname: "",
-            homemail: "",
-            workmail: "",
-            nickname: "",
-            job: ""
-
+    .controller('contactEditCtrl', function ($scope, $routeParams, contactService) {
+        console.log("contactEditCtrl online");
+        $scope.param = {
+            groupid: $routeParams.groupid,
+            contactid: $routeParams.contactid
+        }
+        if ($scope.param.contactid) {
+            $scope.contact = contactService.getContact($scope.groupid, $scope.contactid);
+            console.log("contact edit - routeParams given");
+            $scope.pageTitle = "Edit contact";
         }
 
+        else {
+            console.log("contact create");
+            $scope.pageTitle = "Create contact";
+        }
 
-        $scope.testfill = function () {
-            $scope.thisContact.groupid = 1,
-            $scope.thisContact.contactid = 1,
-            $scope.thisContact.firstname = "aladar",
-                $scope.thisContact.lastname = "kovacs",
-                $scope.thisContact.homemail = "kokoali@gmail.com",
-                $scope.thisContact.workmail = "kovacs.aladar@work.com",
-                $scope.thisContact.nickname = "KovAli",
-                $scope.thisContact.job = "developer"
+        $scope.editContact = function () {
+            var contactResource = $scope.contact;
 
-        }();
+            contactResource.firstName = $scope.firstname;
+            contactResource.lastName = $scope.lastname;
+            contactResource.workEmail = $scope.workmail;
+            contactResource.nickName = $scope.nickname;
+            contactResource.jobTitle = $scope.jobtitle;
 
+            console.log(contactResource);
+
+            var contact_edit = contactService.updateContact($scope.groupid, contactResource);
+            contact_edit.then(function (data) {
+                console.log(data)
+            });
+        }
 
     });
