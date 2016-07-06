@@ -12,13 +12,10 @@ angular.module('myApp', [
   'contactServiceModule',
   'contactGroupServiceModule',
   'userServiceModule',
-  'myApp.view1',
-  'myApp.view2',
   'myApp.version',
-  'myApp.contactView',
+  'myApp.groupsContactsShow',
   'myApp.user_list',
   'myApp.user_creation',
-  'myApp.contactGroupView',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {

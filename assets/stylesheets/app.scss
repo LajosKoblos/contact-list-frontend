@@ -253,9 +253,13 @@ header {
 		li {
 			position: relative;
 			cursor: pointer;
-			padding: 10px 15px;
 			@include transition(background-color, .25s);
 			overflow: hidden;
+
+			& > a {
+				display: block;
+				padding: 10px 15px;
+			}
 
 			.ge-list-item-actions {
 				position: absolute;
@@ -290,9 +294,11 @@ header {
 
 		.ge-list-item-selected {
 			position: relative;
-			color: $blue;
-			padding-left: 20px;
-			font-style: italic;
+			padding-left: 10px;
+
+			& > a {
+				color: $blue;
+			}
 
 			&::before {
 				position: absolute;

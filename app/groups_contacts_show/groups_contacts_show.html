@@ -9,7 +9,7 @@
 			<a href="#!/groups/{{ group.name }}/contacts">
 				{{ group.displayName}}
 				<div class="ge-list-item-actions">
-					<a href="#!/groups/edit" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+					<a href="#!/groups/edit/{{ group.id }}" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 					<a href="#" class="ge-action ge-text-red"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 				</div>
 			</a>
@@ -24,20 +24,18 @@
 <!-- CONTACTS -->
 <div class="ge-list ge-bg-x-light-gray">
 	<div class="ge-list-search">
-		<input id="filterName"
-       type="text"
-       placeholder="Start typing..."
-       ng-model="filterName"
-       ng-model-options="{debounce : 250}">
+		<input id="filterName" type="text" placeholder="Start typing..." ng-model="filterName" ng-model-options="{ debounce : 250 }">
 	</div>
 
 	<ul>
-		<li ng-repeat="contact in contactList | filter:filterName">
-			{{ contact.firstName }} , {{ contact.lastName }}
-			<div class="ge-list-item-actions">
-				<a href="#!/groups/:groupId/contacts/edit" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-				<a href="#" class="ge-action ge-text-red"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-			</div>
+		<li ng-repeat="contact in contacts | filter:{$:filterName}" ng-class="{ 'ge-list-item-selected': contact.id == currentContactId }">
+			<a href="#!/groups/{{ currentGroupId }}/contacts/show/{{ contact.id }}">
+				{{ contact.firstName }} , {{ contact.lastName }}
+				<div class="ge-list-item-actions">
+					<a href="#!/groups/{{ currentGroupId }}/contacts/edit/{{ contact.id }}" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+					<a href="#" class="ge-action ge-text-red"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+				</div>
+			</a>
 		</li>
 	</ul>
 
@@ -46,11 +44,12 @@
 	</div>
 </div>
 
+
 <!-- CONTACT SHOW -->
 <div class="ge-details ge-bg-white">
 	<div class="ge-details-content">
 		
-		<div class="ge-details-title">Elek Test</div>
+		<div class="ge-details-title">{{ contact.firstName }} {{ contact.lastName }}</div>
 
 		<div class="ge-details-subtitle">
 			<i class="fa fa-link" aria-hidden="true"></i>
@@ -63,42 +62,42 @@
 					<i class="fa fa-user" aria-hidden="true"></i>
 					First name
 				</div>
-				<div class="ge-details-list-value">Elek</div>
+				<div class="ge-details-list-value">{{ contact.firstName }}</div>
 			</li>
 			<li>
 				<div class="ge-details-list-key">
 					<i class="fa fa-user" aria-hidden="true"></i>
 					Last name
 				</div>
-				<div class="ge-details-list-value">Test</div>
+				<div class="ge-details-list-value">{{ contact.lastName }}</div>
 			</li>
 			<li>
 				<div class="ge-details-list-key">
 					<i class="fa fa-envelope" aria-hidden="true"></i>
 					Work email
 				</div>
-				<div class="ge-details-list-value">elek.test@ge.com</div>
+				<div class="ge-details-list-value">{{ contact.workEmail }}</div>
 			</li>
 			<li>
 				<div class="ge-details-list-key">
 					<i class="fa fa-envelope" aria-hidden="true"></i>
 					Home email
 				</div>
-				<div class="ge-details-list-value">elek.test@home.com</div>
+				<div class="ge-details-list-value">{{ contact.homeEmail }}</div>
 			</li>
 			<li>
 				<div class="ge-details-list-key">
 					<i class="fa fa-user" aria-hidden="true"></i>
 					Nick name
 				</div>
-				<div class="ge-details-list-value">Telek</div>
+				<div class="ge-details-list-value">{{ contact.nickName }}</div>
 			</li>
 			<li>
 				<div class="ge-details-list-key">
 					<i class="fa fa-suitcase" aria-hidden="true"></i>
 					Job title
 				</div>
-				<div class="ge-details-list-value">GE Java Academy participant</div>
+				<div class="ge-details-list-value">{{ contact.jobTitle }}</div>
 			</li>
 		</ul>
 
