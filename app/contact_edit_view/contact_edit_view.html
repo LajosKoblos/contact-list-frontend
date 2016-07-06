@@ -1,0 +1,19 @@
+<div>
+    <h1>{{pageTitle}}</h1>
+
+    <h2 ng-hide="contact.firstName == '' || contact.lastName == '' ||
+     contact.firstName == null ||contact.lastName == null">
+        {{contact.lastName}} {{contact.firstName}} </h2>
+
+    <p> First name </p>
+    <input type="text" value={{contact.firstName}} placeholder="First Name" ng-model="firstname"> </input>
+    <p>Last name</p>
+    <input type="text" value={{contact.lastName}} placeholder="Last Name" ng-model="lastname"> </input>
+    <p>Work email</p>
+    <input type="text" value={{contact.workEmail}} placeholder="Work email" ng-model="workmail"> </input>
+    <p>Nickname</p>
+    <input type="text" value={{contact.nickName}} placeholder="Nickname" ng-model="nickname"> </input>
+    <p>Job title</p>
+    <input type="text" value={{contact.jobtitle}} placeholder="Job title" ng-model="jobtitle"> </input>
+    <p><button ng-click="editContact()">Save</button> </p>
+</div>
