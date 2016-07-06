@@ -81,6 +81,14 @@ ul, li {
 	background-color: $white;
 }
 
+.ge-bg-red {
+	background-color: $red;
+}
+
+.ge-bg-green {
+	background-color: $green;
+}
+
 
 /* ==== HEADER ==== */
 header {
@@ -210,6 +218,12 @@ header {
 	.ge-list-title, .ge-search-title {
 		color: $blue;
 		text-transform: uppercase;
+	}
+
+	ul, .ge-search-box {
+		flex: 1 1 auto;
+		overflow-y: auto;
+		height: 0;
 	}
 }
 
@@ -542,5 +556,53 @@ header {
 
 	.ge-form-group {
 		padding: 5px 10px;
+	}
+}
+
+/* ==== SUCCESS / ERROR bar ==== */
+#ge-request-status {
+	position: fixed;
+	top: 0;
+	z-index: 999;
+	color: $white;
+	height: 30px;
+	line-height: 30px;
+	width: 100%;
+	font-size: 14px;
+	//overflow: hidden; // TODO
+
+	#ge-request-success, #ge-request-error {
+		position: relative;
+		height: 100%;
+		text-align: center;
+	}
+
+	#ge-request-success {
+		background-color: rgba($green, .7);
+	}
+
+	#ge-request-error {
+		background-color: rgba($red, .7);
+
+		a {
+			position: absolute;
+			right: 10px;
+			@include transition(transform, .25s);
+
+			.fa {
+				color: $white;
+			}
+
+			&:hover {
+				@include rotate(90);
+			}
+		}
+	}
+}
+
+.ge-blurred-body {
+
+	header, #ge-content {
+		@include blur(1px);
 	}
 }

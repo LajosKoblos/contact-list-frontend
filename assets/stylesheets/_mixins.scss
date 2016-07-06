@@ -44,6 +44,14 @@
 	opacity: $trans;
 }
 
+@mixin blur($radius) {
+	filter: blur($radius);
+	-webkit-filter: blur($radius);
+	-moz-filter: blur($radius);
+	-o-filter: blur($radius);
+	-ms-filter: blur($radius);
+}
+
 @mixin box-shadow($top, $left, $blur, $color, $inset: false) {
 	@if $inset {
 		-webkit-box-shadow:inset $top $left $blur $color;
