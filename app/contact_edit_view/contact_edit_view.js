@@ -17,7 +17,8 @@ angular.module('myApp.contact_edit_view', ['ngRoute'])
         $scope.contactid = $routeParams.contactid;
 
         $scope.thisContact = {
-            id: null,
+            groupid: null,
+            contactid: null,
             firstname: "",
             lastname: "",
             homemail: "",
