@@ -10,11 +10,9 @@ angular.module('myApp.contactView', ['ngRoute', 'contactServiceModule'])
     }])
 
     .controller('ContactViewCtrl', function ($scope, $routeParams, contactService) {
-        console.log($routeParams);
         $scope.contact = {}
         contactService.getContact($routeParams.groupId, $routeParams.contactId).then(function (c) {
                 $scope.contact = c;
-                console.log($scope.contact);
-            }
+             }
         )
     });
