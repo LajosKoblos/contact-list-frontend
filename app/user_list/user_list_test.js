@@ -26,9 +26,8 @@ describe('myApp.user_list', function() {
 
       //When
       $controller('UserListController', {'$scope' : $mockScope, 'userService' : mockUserService});
-
-      //Then
       $rootScope.$apply(); // must be here in order to test resolved deferred objects
+      //Then
       expect($mockScope.users).toBe(mockUsers);
     }));
 
@@ -44,10 +43,9 @@ describe('myApp.user_list', function() {
       };
 
       //When
-      $controller('UserListController', {'$scope' : $mockScope, 'UserService' : mockUserService});
-
-      //Then
+      $controller('UserListController', {'$scope' : $mockScope, 'userService' : mockUserService});
       $rootScope.$apply(); // must be here in order to test resolved deferred objects
+      //Then
       expect($mockScope.errors.message).toBe(mockError.message);
     }));
   });
