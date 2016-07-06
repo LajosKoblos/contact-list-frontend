@@ -8,11 +8,12 @@
 <ul>
     <li ng-repeat="contact in contactListTest | filter:filterName">
         {{ contact.firstName }} , {{ contact.lastName }}
-        <button ng-click="deleteActualContact()">Edit</button>
-        <button nk-click="updateActualContact()">Delete</button>
+        <button>
+            <a href="#!/groups/:groupId/contacts/new">Edit</a>
+        </button>
     </li>
 </ul>
 
 <button>
-    <a href="#!/view2">+</a>
+    <a href="#!/groups/:groupId/contacts/new">+</a>
 </button>

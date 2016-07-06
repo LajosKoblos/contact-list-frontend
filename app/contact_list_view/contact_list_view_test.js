@@ -1,16 +1,39 @@
 'use strict';
 
-describe('myApp.contact_list_view module', function() {
+describe('myApp.contact_list_view', function() {
 
-  beforeEach(module('myApp.contact_list_view'));
+    var deferred;
+    var $mockScope;
 
-  describe('ContactListViewCtrl', function(){
-
-    it('should ....', inject(function($controller) {
-      //spec body
-      var view1Ctrl = $controller('ContactListViewCtrl');
-      expect(view1Ctrl).toBeDefined();
+    beforeEach(module('myApp.contact_list_view'));
+    beforeEach(inject(function ($controller, $rootScope, $q) {
+        deferred = $q.defer();
+        $mockScope = $rootScope.$new();
     }));
+
+    describe('ContactListViewCtrl', function(){
+
+        it('should use the contactService.getContactsInGroup to list all contacts first name in a certain group', inject(function($controller, $rootScope) {
+          // given
+          var mockContacts = [{firstname:'testFirstName1'},{firstname:'testFirstName2'}];
+
+          var mockContactService = {
+              "getContactsInGroup" : function(){
+                  deferred.resolve(mockContacts);
+                  return deferred.promise;
+              }
+          };
+
+          // when
+          $controller('ContactListViewCtrl', {'$scope' : $mockScope, 'ContactService' : mockContactService});
+
+          // then
+          $rootScope.$apply();
+          expect($mockScope.contacts).toBe(mockContacts)
+
+
+        }));
 
   });
 });
+

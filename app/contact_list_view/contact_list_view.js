@@ -4,18 +4,25 @@ angular.module('myApp.contactListView', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
-      .when('/contact_list_view', {
-        templateUrl: 'contact_list_view/contact_list_view.html',
-        controller: 'ContactListViewCtrl'
-    })
-      .when('/contact_list_view2', {
-        templateUrl: 'contact_list_view/contact_list_view.html',
-        contoller: 'ContactListViewCtrl'
-    })
+      .when("/groups/:groupId/contacts/", {
+          templateUrl: 'contact_list_view/contact_list_view.html',
+          controller: 'ContactListViewCtrl'
+      })
+      .when("/groups/:groupId/contacts/show/:contactId", {
+          templateUrl: 'contact_list_view/contact_list_view.html',
+          controller: 'ContactListViewCtrl'
+      })
+      .when("/groups/:groupId/contacts/edit/:contactId", {
+          templateUrl: 'contact_list_view/contact_list_view.html',
+          contoller: 'ContactListViewCtrl'
+      })
+      .when("/groups/:groupId/contacts/new", {
+          templateUrl: 'contact_list_view/contact_list_view.html',
+          contoller: 'ContactListViewCtrl'
+      })
 }])
 
-
-.controller('ContactListViewCtrl', function($scope,contactService) {
+.controller('ContactListViewCtrl', function($scope, contactService) {
 
     $scope.contactList = [];
 
@@ -29,26 +36,16 @@ angular.module('myApp.contactListView', ['ngRoute'])
         {firstName:"testFName3" , lastName:"testLName2"}
     ];
 
-/*
     contactService.getContactsInGroup().then(function (data){
         console.log(data)
         console.log(data[0])
-        $scope.contactListTmp = [];
-
-        angular.forEach(data, function(firstName){
-            this.push(firstName)
-        }, contactListTmp);
 
     });
-*/
-    $scope.deleteActualContact = function () {
-     console.log("delete")
-    }
-    
-    
-    $scope.updateActualContact = function () {
-        console.log("update")
 
+    $scope.editActualContact = function () {
+     console.log("edit")
     }
+    
+
 
 });
