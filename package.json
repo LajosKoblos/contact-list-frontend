@@ -38,9 +38,9 @@
   },
   "dependencies": {
     "angular": "latest",
-    "contactService": "..\\contact-list-frontend-contact-service\\contactService-0.0.1.tgz",
-    "authService": "..\\contact-list-frontend-auth-service\\authService-1.0.1.tgz",
-    "contactGroupService": "..\\contact-list-frontend-contact-group-service\\contactGroupService-0.0.1.tgz",
-    "userService": "..\\contact-list-frontend-user-service\\userService-0.0.1.tgz"
+    "contactService": "file:..\\contact-list-frontend-contact-service",
+    "authService": "file:..\\contact-list-frontend-auth-service",
+    "contactGroupService": "file:..\\contact-list-frontend-contact-group-service",
+    "userService": "file:..\\contact-list-frontend-user-service"
   }
 }

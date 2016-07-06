@@ -14,6 +14,9 @@ angular.module('myApp', [
   'userServiceModule',
   'myApp.view1',
   'myApp.view2',
+  'myApp.version',
+  'myApp.user_list',
+  'myApp.user_creation'
   'myApp.contactGroupView',
   'myApp.version'
 ]).
