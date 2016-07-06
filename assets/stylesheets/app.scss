@@ -7,7 +7,8 @@
 	outline: none;
 }
 
-input, textarea, select {
+input[type="text"], input[type="password"], input[type="submit"],
+button, textarea, select {
 	appearance: none;
 	-webkit-appearance: none;
 	border: 1px solid #FFF;
@@ -36,7 +37,7 @@ a, link {
 	color: $black;
 }
 
-div, input, textarea, select {
+div, input, textarea, select, label {
 	box-sizing: border-box;
 }
 
@@ -455,14 +456,15 @@ header {
 	.ge-form-group {
 		margin-bottom: 10px;
 
-		input {
+		input[type="text"], input[type="password"], input[type="submit"], label {
+			display: block;
 			width: 100%;
 			@include border-radius(5px);
 			padding: 10px 10px;
 			font-size: 14px;
 		}
 
-		input[type="text"], input[type="password"] {
+		input[type="text"], input[type="password"], label {
 			border: 1px solid $gray;
 			@include transition(border-color, .25s);
 
