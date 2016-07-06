@@ -24,17 +24,6 @@ var prepRepo = function (repo) {
 
 repos.forEach(prepRepo);
 
-var packRepo = function (repo) {
-    process.chdir(repo);
-    console.log("building: "+ repo)
-    execSync('npm pack');
-//    execSync('copy *.tgz ' + repo + '.tgz');
-    process.chdir('..');
-}
-
-repos.forEach(packRepo);
-
-
 process.chdir('contact-list-frontend');
 
 execSync('npm prune');
