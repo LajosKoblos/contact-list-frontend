@@ -1,0 +1,111 @@
+<!-- GROUPS -->
+<div class="ge-list ge-bg-light-gray">
+	<div class="ge-list-title">
+		Groups
+	</div>      
+
+	<ul>
+		<li ng-repeat="group in groups" ng-class="{ 'ge-list-item-selected': group.name == currentGroupId }">
+			<a href="#!/groups/{{ group.name }}/contacts">
+				{{ group.displayName}}
+				<div class="ge-list-item-actions">
+					<a href="#!/groups/edit" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+					<a href="#" class="ge-action ge-text-red"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+				</div>
+			</a>
+		</li>
+	</ul>
+
+	<div class="ge-footer-bar ge-list-footer">
+		<a href="#!/groups/new" class="ge-action ge-action-animated ge-text-blue"><i class="fa fa-plus" aria-hidden="true"></i></a>
+	</div>
+</div>
+
+<!-- CONTACTS -->
+<div class="ge-list ge-bg-x-light-gray">
+	<div class="ge-list-search">
+		<input id="filterName"
+       type="text"
+       placeholder="Start typing..."
+       ng-model="filterName"
+       ng-model-options="{debounce : 250}">
+	</div>
+
+	<ul>
+		<li ng-repeat="contact in contactList | filter:filterName">
+			{{ contact.firstName }} , {{ contact.lastName }}
+			<div class="ge-list-item-actions">
+				<a href="#!/groups/:groupId/contacts/edit" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				<a href="#" class="ge-action ge-text-red"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+			</div>
+		</li>
+	</ul>
+
+	<div class="ge-footer-bar ge-list-footer">
+		<a href="#!/groups/:groupId/contacts/new" class="ge-action ge-action-animated ge-text-blue"><i class="fa fa-plus" aria-hidden="true"></i></a>
+	</div>
+</div>
+
+<!-- CONTACT SHOW -->
+<div class="ge-details ge-bg-white">
+	<div class="ge-details-content">
+		
+		<div class="ge-details-title">Elek Test</div>
+
+		<div class="ge-details-subtitle">
+			<i class="fa fa-link" aria-hidden="true"></i>
+			Member of group '<a href="#" class="ge-text-blue">Apple</a>'
+		</div>
+
+		<ul class="ge-details-list">
+			<li>
+				<div class="ge-details-list-key">
+					<i class="fa fa-user" aria-hidden="true"></i>
+					First name
+				</div>
+				<div class="ge-details-list-value">Elek</div>
+			</li>
+			<li>
+				<div class="ge-details-list-key">
+					<i class="fa fa-user" aria-hidden="true"></i>
+					Last name
+				</div>
+				<div class="ge-details-list-value">Test</div>
+			</li>
+			<li>
+				<div class="ge-details-list-key">
+					<i class="fa fa-envelope" aria-hidden="true"></i>
+					Work email
+				</div>
+				<div class="ge-details-list-value">elek.test@ge.com</div>
+			</li>
+			<li>
+				<div class="ge-details-list-key">
+					<i class="fa fa-envelope" aria-hidden="true"></i>
+					Home email
+				</div>
+				<div class="ge-details-list-value">elek.test@home.com</div>
+			</li>
+			<li>
+				<div class="ge-details-list-key">
+					<i class="fa fa-user" aria-hidden="true"></i>
+					Nick name
+				</div>
+				<div class="ge-details-list-value">Telek</div>
+			</li>
+			<li>
+				<div class="ge-details-list-key">
+					<i class="fa fa-suitcase" aria-hidden="true"></i>
+					Job title
+				</div>
+				<div class="ge-details-list-value">GE Java Academy participant</div>
+			</li>
+		</ul>
+
+	</div>
+
+	<div class="ge-footer-bar ge-details-footer">
+		<a href="#" class="ge-action ge-action-animated ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+		<a href="#" class="ge-action ge-action-animated ge-text-red"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+	</div>
+</div>
