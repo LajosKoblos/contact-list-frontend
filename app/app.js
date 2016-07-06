@@ -16,7 +16,7 @@ angular.module('myApp', [
     'myApp.view2',
     'myApp.version',
     'myApp.contact_edit',
-    'myApp.version',
+    'myApp.contactGroupView',
     'myApp.user_list',
     'myApp.user_creation',
     'myApp.new_contact_group_view'
