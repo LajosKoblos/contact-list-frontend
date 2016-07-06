@@ -1,9 +1,20 @@
-<p>This is the partial for view 1.</p>
+<p>Contactgroups:</p>
 <p>
+
+    <input id="filterName"
+           type="search"
+           placeholder="Search in contacts by name"
+           minlength="1"
+           ng-model="filterName"
+           ng-model-options="{debounce : 250}">
+
 <ul>
-    <li ng-repeat="group in groups" >
-        {{ group.displayName }}
+    <li ng-repeat="group in groups| filter : filterName">
+        {{ group.displayName}}
+        <button><a href="#!/groups/edit">edit</a></button>
     </li>
 </ul>
+
+<button><a href="#!/groups/new">new contactgroup</a></button>
 
 </p>
