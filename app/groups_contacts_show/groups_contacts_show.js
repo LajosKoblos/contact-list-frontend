@@ -17,7 +17,7 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 }])
 
 .controller('groupsContactsShowCtrl', function ($scope, $routeParams, $location, contactGroupService, contactService) {
-	$scope.groups=[];
+	$scope.groups = [];
 
 	contactGroupService.listGroups().then(function (groups) {
 		
