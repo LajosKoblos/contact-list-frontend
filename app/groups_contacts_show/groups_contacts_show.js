@@ -12,6 +12,9 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 	}).when('/groups/:groupId/contacts/show/:contactId', {
 		templateUrl: 'groups_contacts_show/groups_contacts_show.html',
 		controller: 'groupsContactsShowCtrl'
+	}).when('/groups/:groupId/contacts/edit/:contactId', {
+		templateUrl: 'groups_contacts_show/groups_contacts_show.html',
+		controller: 'groupsContactsShowCtrl'
 	});
 
 }])
