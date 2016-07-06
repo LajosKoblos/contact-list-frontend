@@ -1,20 +1,19 @@
-<p>Contactgroups:</p>
-<p>
+<div class="ge-list ge-bg-light-gray">
+	<div class="ge-list-title">
+		Groups
+	</div>      
 
-    <input id="filterName"
-           type="search"
-           placeholder="Search in contacts by name"
-           minlength="1"
-           ng-model="filterName"
-           ng-model-options="{debounce : 250}">
+	<ul>
+		<li ng-repeat="group in groups">
+			{{ group.displayName}}
+			<div class="ge-list-item-actions">
+				<a href="#!/groups/edit" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				<a href="#" class="ge-action ge-text-red"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+			</div>
+		</li>
+	</ul>
 
-<ul>
-    <li ng-repeat="group in groups| filter : filterName">
-        {{ group.displayName}}
-        <button><a href="#!/groups/edit">edit</a></button>
-    </li>
-</ul>
-
-<button><a href="#!/groups/new">new contactgroup</a></button>
-
-</p>
+	<div class="ge-footer-bar ge-list-footer">
+		<a href="#!/groups/new" class="ge-action ge-action-animated ge-text-blue"><i class="fa fa-plus" aria-hidden="true"></i></a>
+	</div>
+</div>
