@@ -16,11 +16,24 @@
 	<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
 	<header>
 		<div id="ge-header-left">
 			<a href="#" id="ge-header-logo">
 				<span>Academy Contacts</span>
 			</a>
+=======
+  <ul class="menu">
+    <li><a href="#!/view1">view1</a></li>
+    <li><a href="#!/view2">view2</a></li>
+    <!--sample only-->
+    <li><a href="#!/contact_edit/1/1">contact_edit</a></li>
+    <!--sample end-->
+    <li><a href="#!/contact_edit/new">contact_create</a></li>
+    <li><a href="#!/user_list">user list</a></li>
+    <li><a href="#!/user_creation">user_creation</a></li>
+  </ul>
+>>>>>>> us5
 
 			<ul id="ge-header-tabs">
 				<li>
@@ -49,6 +62,7 @@
 		</div>
 	</header>
 
+<<<<<<< HEAD
 	<div ng-view id="ge-content"></div>
 
 	<script src="bower_components/angular/angular.js"></script>
@@ -62,5 +76,21 @@
 	<script src="components/version/version.js"></script>
 	<script src="components/version/version-directive.js"></script>
 	<script src="components/version/interpolate-filter.js"></script>
+=======
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bundle.js"></script>
+  <script src="view1/view1.js"></script>
+  <script src="view2/view2.js"></script>
+  <script src="user_list/user_list.js"></script>
+  <script src="user_creation/user_creation.js"></script>
+  <script src="contact_edit_view/contact_edit_view.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+>>>>>>> us5
 </body>
 </html>

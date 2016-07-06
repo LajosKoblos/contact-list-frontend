@@ -7,19 +7,18 @@ require("userService");
 
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
-  'ngRoute',
-  'authServiceModule',
-  'contactServiceModule',
-  'contactGroupServiceModule',
-  'userServiceModule',
-  'myApp.version',
-  'myApp.groupsContactsShow',
-  'myApp.user_list',
-  'myApp.user_creation',
-  'myApp.version'
+	'ngRoute',
+	'authServiceModule',
+	'contactServiceModule',
+	'contactGroupServiceModule',
+	'userServiceModule',
+	'myApp.version',
+	'myApp.groupsContactsShow',
+	'myApp.user_list',
+	'myApp.user_creation',
+	'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
-
-  $routeProvider.otherwise({redirectTo: '/view1'});
+	$locationProvider.hashPrefix('!');
+	$routeProvider.otherwise({redirectTo: '/view1'});
 }]);
