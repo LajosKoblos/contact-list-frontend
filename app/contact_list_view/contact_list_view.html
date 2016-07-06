@@ -5,10 +5,14 @@
        ng-model="filterName"
        ng-model-options="{debounce : 250}">
 
-
 <ul>
-    <li ng-repeat="contact in contactList | filter:filterName">
+    <li ng-repeat="contact in contactListTest | filter:filterName">
         {{ contact.firstName }} , {{ contact.lastName }}
+        <button ng-click="deleteActualContact()">Edit</button>
+        <button nk-click="updateActualContact()">Delete</button>
     </li>
 </ul>
 
+<button>
+    <a href="#!/view2">+</a>
+</button>
