@@ -15,8 +15,7 @@ angular.module('myApp.authentication', ['ngRoute', 'authServiceModule'])
 
 .controller('authenticationCtrl', function ($scope, $rootScope, $location, authService, Auth) {
 	$rootScope.userName = '';
-	$rootScope.userIsAdmin = false;
-
+	
 	$scope.user = { userName: '', password: '' };
 	$scope.error = '';
 
@@ -29,7 +28,6 @@ angular.module('myApp.authentication', ['ngRoute', 'authServiceModule'])
 			$rootScope.userIsLoggedIn = true;
 			$rootScope.userName = $scope.user.userName;
 			$rootScope.userIsAdmin = isAdmin;
-
 			$scope.error = '';
 			$location.path(isAdmin ? '/users' : '/groups');
 
