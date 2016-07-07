@@ -18,13 +18,13 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 	});
 }])
 
-.controller('groupsContactsShowCtrl', function ($scope, $routeParams, $location, contactGroupService, contactService) {
+.controller('groupsContactsShowCtrl', function ($scope,$rootScope, $routeParams, $location, contactGroupService, contactService) {
 	$scope.groups = [];
 	$scope.state = ([ 'show', 'edit', 'new' ].indexOf($routeParams.action) !== -1) ? $routeParams.action : 'show';
 
 	contactGroupService.listGroups().then(function (groups) {
-		
-		$scope.groups = groups;
+
+		$scope.groups = groups.data;
 		$scope.contacts = [];
 		$scope.currentGroupId = (!$routeParams.groupId) ? $scope.groups[0].name : $routeParams.groupId;
 
