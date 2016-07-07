@@ -23,16 +23,16 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 	$scope.state = ([ 'show', 'edit', 'new' ].indexOf($routeParams.action) !== -1) ? $routeParams.action : 'show';
 
 	contactGroupService.listGroups().then(function (groups) {
-		console.log(groups);
-		
+
 		$scope.groups = groups;
 		$scope.contacts = [];
+        $scope.contact={};
 		$scope.currentGroupId = (!$routeParams.groupId) ? $scope.groups[0].name : $routeParams.groupId;
 
 		contactService.getContactsInGroup($scope.currentGroupId).then(function ( contacts ) {
 			// Creating 'id' property for each contact object
 			contacts.forEach( function ( contact ) {
-				contact.id = contact._links.self.href.split('/').slice(-1).pop();
+                contact.id = contact.links[0].href.split('/').slice(-1).pop();
 			});
 
 			$scope.contacts = contacts;
@@ -56,9 +56,10 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 	});
 
 	$scope.createContact = function() {
-		contactService.addContactToGroup($scope.groupId, $scope.contact).then(function ( response ) {
+
+		contactService.addContactToGroup($scope.currentGroupId, $scope.contact).then(function ( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
-		});
+		}, function(response) {console.log(response)});
 	};
 
 	$scope.editContact = function() {
