@@ -25,7 +25,6 @@ angular.module('myApp.Users', ['ngRoute'])
 	userService.getUsers().then(function (users) {
 		
 		$scope.users = users;
-		console.log($scope.users)
 		$scope.currentUserName = (!$routeParams.username && $scope.state !== 'new') ? $scope.users[0].userName : $routeParams.username;
 
 
@@ -35,11 +34,9 @@ angular.module('myApp.Users', ['ngRoute'])
 
 		$scope.user = (matchedUsers.length > 0) ? matchedUsers[0] : {};
 
-		$scope.userName = $scope.user.userName
-		$scope.password = $scope.user.password
-		$scope.role = $scope.user.role;
+		console.log(matchedUsers[0]);
 
-		switch( $scope.state ) {
+			switch( $scope.state ) {
 			case 'new':
 				$location.path('/users/' + $scope.state );
 				break;
@@ -51,9 +48,14 @@ angular.module('myApp.Users', ['ngRoute'])
 	});
 
 	$scope.createUser = function() {
-		userService.createUser({userName: user.userName, password: user.password, role: user.role}).then(function ( response ) {
+
+		console.log("$scope.user" );
+		$scope.user.role = $scope.user.role ? "ADMIN" : "USER";
+		console.log($scope.user);
+
+		userService.createUser($scope.user).then(function ( response ) {
 			console.log(response)
-			$location.path('/users/new');
+			$location.path('/users/edit/:');
 		});
 	};
 
