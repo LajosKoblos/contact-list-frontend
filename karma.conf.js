@@ -11,7 +11,8 @@ module.exports = function(config) {
       'bundle.js',
       'components/**/*.js',
       'view*/**/*.js',
-      'user_list/**/*.js'
+      'user_list/**/*.js',
+      'authentication/**/*.js'
     ],
 
     autoWatch: true,
