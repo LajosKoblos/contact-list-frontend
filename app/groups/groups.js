@@ -23,6 +23,7 @@ angular.module('myApp.groups', ['ngRoute'])
 	contactGroupService.listGroups().then(function (groups) {
 		
 		$scope.groups = groups;
+		if (groups.length > 0) {
 		$scope.currentGroupId = (!$routeParams.groupId) ? $scope.groups[0].name : $routeParams.groupId;
 
 
@@ -31,6 +32,10 @@ angular.module('myApp.groups', ['ngRoute'])
 			$scope.group = $scope.groups.filter( function ( group ) {
 				return (group.name === $scope.currentGroupId);
 			})[0];
+		}
+		}
+		else {
+			$scope.currentGroupId=null
 		}
 	});
 
