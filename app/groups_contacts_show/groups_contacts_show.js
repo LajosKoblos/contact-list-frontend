@@ -23,7 +23,8 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 	$scope.state = ([ 'show', 'edit', 'new' ].indexOf($routeParams.action) !== -1) ? $routeParams.action : 'show';
 
 	contactGroupService.listGroups().then(function (groups) {
-
+		console.log(groups);
+		
 		$scope.groups = groups;
 		$scope.contacts = [];
 		$scope.currentGroupId = (!$routeParams.groupId) ? $scope.groups[0].name : $routeParams.groupId;

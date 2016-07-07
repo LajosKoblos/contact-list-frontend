@@ -23,6 +23,17 @@ angular.module('myApp.groups', ['ngRoute'])
 		
 		$scope.groups = groups;
 		$scope.currentGroupId = (!$routeParams.groupId) ? $scope.groups[0].name : $routeParams.groupId;
+
+
+		if($scope.state=="edit")
+		{
+			console.log($scope.group);
+			console.log($scope.groups);
+			$scope.group = $scope.groups.filter( function ( group ) {
+				return (group.name === $scope.currentGroupId);
+			})[0];
+			console.log($scope.group);
+		}
 	});
 
 	$scope.createGroup = function() {
@@ -34,7 +45,8 @@ angular.module('myApp.groups', ['ngRoute'])
 	};
 
 	$scope.editGroup = function() {
-		contactGroupService.renameGroup($scope.group).then(function ( response ) {
+		var group =  { "id": { "userName":$rootScope.userName, "contactGroupName": $scope.group.name }, "displayName":$scope.group.displayName }
+		contactGroupService.renameGroup(group).then(function ( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
 		});
 	};

@@ -8,12 +8,12 @@ require("userService");
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
 	'ngRoute',
-	'myApp.authentication',
 	'authServiceModule',
 	'contactServiceModule',
 	'contactGroupServiceModule',
 	'userServiceModule',
 	'myApp.version',
+	'myApp.authentication',
 	'myApp.groups',
 	'myApp.groupsContactsShow',
 	'myApp.user_list',
@@ -91,8 +91,16 @@ angular.module('myApp', [
 	})
 	.run(['$rootScope', '$location', 'Auth', 'RedirectFactory', 'DefaultPathes', function ($rootScope, $location, auth, redirectFactory, defaultPathes) {
 		$rootScope.$on("$routeChangeStart", function (event, nextRoute, currentRoute) {
+
+			console.log(currentRoute);
+
+			console.log(nextRoute);
+
+			console.log("old URL");
+			console.log(defaultPathes.hasOldPath())
 			var loggedIn = auth.isLoggedIn();
 			var path;
+			
 			if (loggedIn) {           //valaki bejelentkezve vam
 		//		path = defaultPathes.hasOldPath() ? redirectFactory.validate() : nextRoute.$$route.originalPath;
 				path = nextRoute.$$route.originalPath;
@@ -102,11 +110,10 @@ angular.module('myApp', [
 					defaultPathes.setOLD(currentRoute.$$route.originalPath);
 				}
 				path = "/login";
+				console.log(path);
 				$location.path(path).replace();
 				defaultPathes.cleanOLDPath();
-
 			}
-
 		});
 	}
 
