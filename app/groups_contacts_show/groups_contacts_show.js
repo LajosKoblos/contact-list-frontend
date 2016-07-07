@@ -63,14 +63,18 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 	};
 
 	$scope.editContact = function() {
-		contactService.updateContact($scope.groupId, $scope.contact).then(function ( response ) {
+
+        var contact = { firstName: $scope.contact.firstName, lastName: $scope.contact.lastName, workEmail: $scope.contact.workEmail, nickName: $scope.contact.nickName, jobTitle: $scope.contact.jobTitle}
+
+        contactService.updateContact($scope.currentGroupId,$scope.currentContactId, contact).then(function ( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/show/' + $scope.currentContactId);
-		});
+		}, function(response) {console.log(response)});
 	};
 
 	$scope.deleteContact = function( contactId ) {
-		contactService.deleteContact($scope.groupId, $contactId).then(function( response ) {
+
+		contactService.deleteContact($scope.currentGroupId, $contactId).then(function( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
-		});
+		}, function(response) {console.log(response)});
 	};
 });
