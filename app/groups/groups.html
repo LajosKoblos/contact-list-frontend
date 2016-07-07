@@ -1,0 +1,70 @@
+<!-- GROUPS -->
+<div class="ge-list ge-bg-light-gray">
+	<div class="ge-list-title">
+		Groups
+	</div>      
+
+	<ul>
+		<li ng-repeat="group in groups" ng-class="{ 'ge-list-item-selected': group.name == currentGroupId }">
+			<a href="#!/groups/{{ group.name }}/contacts">{{ group.displayName}}</a>
+			<div class="ge-list-item-actions">
+				<a href="#!/groups/edit/{{ group.name }}" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				<!--<a href="javascript:void(0)" class="ge-action ge-text-red"><i class="fa fa-trash-o" aria-hidden="true"></i></a>-->
+			</div>
+		</li>
+	</ul>
+
+	<div class="ge-footer-bar ge-list-footer">
+		<a href="#!/groups/new" class="ge-action ge-action-animated ge-text-blue"><i class="fa fa-plus" aria-hidden="true"></i></a>
+	</div>
+</div>
+
+<!-- NEW -->
+<div class="ge-details ge-bg-white" ng-if="state === 'new'">
+
+	<div class="ge-details-content">
+		
+		<div class="ge-details-title">Create new group</div>
+
+		<div class="ge-details-form ge-form">
+					
+			<div class="ge-form-group ge-form-group-with-errors">
+				<input type="text" name="name" placeholder="name" ng-model="group.name">
+				<div class="ge-form-error">This field is required.</div>
+			</div>
+			
+			<div class="ge-form-group">
+				<input type="text" name="display_name" placeholder="Display name" ng-model="group.displayName">
+			</div>
+		</div>
+	</div>
+
+	<div class="ge-footer-bar ge-details-footer">
+		<a href="javascript:void(0)" class="ge-action ge-action-animated ge-text-blue" ng-click="createGroup()"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
+	</div>
+</div>
+
+<!-- EDIT -->
+<div class="ge-details ge-bg-white" ng-if="state === 'edit'">
+
+	<div class="ge-details-content">
+		
+		<div class="ge-details-title">Edit group</div>
+
+		<div class="ge-details-form ge-form">
+					
+			<div class="ge-form-group ge-form-group-with-errors">
+				<input type="text" name="name" placeholder="name" ng-model="group.name">
+				<div class="ge-form-error">This field is required.</div>
+			</div>
+			
+			<div class="ge-form-group">
+				<input type="text" name="display_name" placeholder="Display name" ng-model="group.displayName">
+			</div>
+		</div>
+	</div>
+
+	<div class="ge-footer-bar ge-details-footer">
+		<a href="javascript:void(0)" class="ge-action ge-action-animated ge-text-blue" ng-click="editGroup()"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
+	</div>
+</div>

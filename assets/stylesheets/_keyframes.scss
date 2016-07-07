@@ -1,0 +1,23 @@
+@import 'mixins';
+
+@include keyframes('logo-bounce') {
+	0% {
+		@include opacity(0);
+		background-position: 0 -100px;
+	}
+	100% {
+		@include opacity(1);
+		background-position: left center;
+	}
+}
+
+@include keyframes('logo-bounce-main') {
+	0% {
+		@include opacity(0);
+		background-position: center -100px;
+	}
+	100% {
+		@include opacity(1);
+		background-position: center center;
+	}
+}
