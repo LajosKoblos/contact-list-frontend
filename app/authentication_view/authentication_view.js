@@ -1,8 +1,7 @@
 'use strict';
 var authentication = angular.module('myApp.authentication', ['ngRoute', 'authServiceModule']);
-
 authentication.config(function ($routeProvider) {
-    $routeProvider.when('/', {
+    $routeProvider.when('/login', {
         templateUrl: '/authentication_view/login.html',
         controller: 'loginController'
     });
@@ -17,48 +16,31 @@ authentication.config(function ($routeProvider) {
     });
 
 });
-
-authentication.run(function ($location, $rootScope, Auth) {
-    $rootScope.$on("$routeChangeStart", function (event, nextRoute, currentRoute) {
-        console.log("nextRoute: " + nextRoute);
-        console.log("currentRoute: " + currentRoute);
-        //$location.path(nextRoute).replace();
-    })
-});
-
-
-authentication.controller('loginController', function ($scope, $rootScope, $location, $httpWithProtection, authService) {
+authentication.controller('loginController', function ($scope, $rootScope, $location, authService, Auth) {
     $scope.user = {userName: '', password: ''};
-    /*
-
-     $scope.users = [
-     {username: "user1", password: "passwd", token: "UserToken"},
-     {username: "cheatUser", password: "cheating", token: "cheatUserToken"},
-     {username: 'admin', password: "adminpasswd", token: "adminUserToken"}
-     ];
-     */
 
     $scope.login = function () {
-        //authService.login($scope.user)
-        authService.login($scope.user.userName, $scope.user.password)
-            .then(function (result) {
-                console.log(result);
-
-                //var nextpath = (result.Role == 'USER') ? "/groups" : "/users";
-                $rootScope.userRole = '';
-                $location.path(path);
-                // $scope.loginError = false;
-            }, function (error) {
-                console.log("exception" + error);
-                $rootScope.error = error;
-            });
+        console.log($scope.user);
+        authService.login($scope.user).then(
+         function (result) {
+             Auth.setRole(result.role);
+             var path = (result.role == 'USER') ? "/groups" : "/users";
+             $location.path(path);
+            console.log(result);
+         },
+         function(error){
+             console.log("error");
+             console.log(error);
+         });
+        console.log("login");
     }
+
 
     $scope.logout = function () {
         authService.logout();
         $scope.user = {userName: '', password: ''};
         $scope.loginError = false;
         $scope.tokenID = '';
-        $location.path('/');
+        $location.path('/login');
     }
 });
