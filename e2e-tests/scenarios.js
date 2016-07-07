@@ -39,4 +39,18 @@ describe('my app', function() {
     });
 
   });
+
+  describe('user_list', function() {
+
+    beforeEach(function() {
+      browser.get('index.html#!/user_list');
+    });
+
+
+    it('should render user_list when user navigates to /user_list', function() {
+      expect(element.all(by.css('h1')).first().getText()).
+      toMatch(/USER LIST/);
+    });
+
+  });
 });

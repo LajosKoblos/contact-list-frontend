@@ -17,7 +17,6 @@ angular.module('myApp', [
 	'myApp.groups',
 	'myApp.groupsContactsShow',
 	'myApp.user_list',
-	'myApp.user_creation',
 	'myApp.version'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
 	// $locationProvider.html5Mode(true);
@@ -101,6 +100,7 @@ angular.module('myApp', [
 			console.log(defaultPathes.hasOldPath())
 			var loggedIn = auth.isLoggedIn();
 			var path;
+			
 			if (loggedIn) {           //valaki bejelentkezve vam
 		//		path = defaultPathes.hasOldPath() ? redirectFactory.validate() : nextRoute.$$route.originalPath;
 				path = nextRoute.$$route.originalPath;
@@ -111,6 +111,7 @@ angular.module('myApp', [
 				}
 				path = "/login";
 			}
+
 			console.log(path);
 			$location.path(path).replace();
 			defaultPathes.cleanOLDPath();
