@@ -24,7 +24,7 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 
 	contactGroupService.listGroups().then(function (groups) {
 
-		$scope.groups = groups.data;
+		$scope.groups = groups;
 		$scope.contacts = [];
 		$scope.currentGroupId = (!$routeParams.groupId) ? $scope.groups[0].name : $routeParams.groupId;
 
