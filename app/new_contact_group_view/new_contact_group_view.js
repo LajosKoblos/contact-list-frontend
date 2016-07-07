@@ -26,10 +26,11 @@ angular.module('myApp.new_contact_group_view', ['ngRoute'])
 
             // console.log("newContactGroupViewCtrl createNewContactGroup function ")
 
-            var newGroup = contactGroupService.createGroup("newName", "new_contact_group").then(function (data) {
+            var newGroup = contactGroupService.createGroup("newName", new_contact_group).then(function (data) {
                 // $scope.groups = data;
 
                 console.log(newGroup);
+                console.log(data);
                 console.log(new_contact_group);
             });
 
