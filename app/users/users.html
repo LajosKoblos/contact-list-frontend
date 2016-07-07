@@ -1,0 +1,102 @@
+<!-- USERS -->
+<div class="ge-list ge-bg-light-gray">
+	<div class="ge-list-title">
+		Users
+	</div>      
+
+	<ul>
+		<li ng-repeat="user in users" ng-class="{ 'ge-list-item-selected': user.userName == currentUserName }">
+			<a href="#!/users/edit/{{ user.userName }}">
+				{{ user.userName}}
+				<div class="ge-list-item-actions">
+					<a href="#!/users/edit/{{ user.userName }}" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				</div>
+			</a>
+		</li>
+	</ul>
+
+	<div class="ge-footer-bar ge-list-footer">
+		<a href="#!/users/new" class="ge-action ge-action-animated ge-text-blue"><i class="fa fa-plus" aria-hidden="true"></i></a>
+	</div>
+</div>
+
+
+<!-- NEW -->
+<div class="ge-details ge-bg-white" ng-if="state === 'new'">
+
+	<div class="ge-details-content">
+		
+		<div class="ge-details-title">Create new user</div>
+
+		<div class="ge-details-form ge-form">
+
+			<div class="ge-form-group ge-form-group-with-errors">
+				<input type="text" name="userName" placeholder="User name" ng-model="user.userName">
+				<div class="ge-form-error">This field is required.</div>
+			</div>
+
+
+			<div class="ge-form-group ge-form-group-with-errors">
+				<input type="password" name="new_password" placeholder="New password" ng-model="user.password">
+				<div class="ge-form-error">This field is required.</div>
+			</div>
+
+			<div class="ge-form-group ge-form-group-with-errors">
+				<input type="password" name="new_password_confirmation" placeholder="New password confirmation" ng-model="user.password">
+				<div class="ge-form-error">This field is required.</div>
+			</div>
+
+			<div class="ge-form-group">
+				<label>
+					<input type="checkbox" name="role"ng-model="user.password">
+					Admin
+				</label>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="ge-footer-bar ge-details-footer">
+		<a href="javascript:void(0)" class="ge-action ge-action-animated ge-text-blue" ng-click="createUser()"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
+	</div>
+</div>
+
+<!-- EDIT -->
+<div class="ge-details ge-bg-white" ng-if="state === 'edit'">
+
+	<div class="ge-details-content">
+		
+		<div class="ge-details-title">Edit user</div>
+
+		<div class="ge-details-form ge-form">
+					
+			<div class="ge-form-group ge-form-group-with-errors">
+				<input type="text" name="userName" placeholder="User name" ng-model="user.userName">
+				<div class="ge-form-error">This field is required.</div>
+			</div>
+
+			<div class="ge-form-group ge-form-group-with-errors">
+			<input type="password" name="password" placeholder="Password" ng-model="user.password">
+				<div class="ge-form-error">This field is required.</div>
+			</div>
+
+
+			<div class="ge-form-group ge-form-group-with-errors">
+				<input type="password" name="password_confirmation" placeholder="Password" ng-model="user.password">
+				<div class="ge-form-error">This field is required.</div>
+			</div>
+
+			<div class="ge-form-group">
+				<label>
+					<input type="checkbox" name="role" ng-checked="user.role == 'ADMIN'" ng-model="user.password">
+					Admin
+				</label>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="ge-footer-bar ge-details-footer">
+		<a href="javascript:void(0)" class="ge-action ge-action-animated ge-text-blue" ng-click="editUser()"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
+	</div>
+</div>

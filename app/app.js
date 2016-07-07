@@ -17,7 +17,6 @@ angular.module('myApp', [
 	'myApp.groups',
 	'myApp.groupsContactsShow',
 	'myApp.user_list',
-	'myApp.user_creation',
 	'myApp.version'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
 	// $locationProvider.html5Mode(true);
