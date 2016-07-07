@@ -42,13 +42,13 @@
 			</div>
 
 			<div class="ge-form-group ge-form-group-with-errors">
-				<input type="password" name="new_password_confirmation" placeholder="New password confirmation" ng-model="user.password">
+				<input type="password" name="new_password_confirmation" placeholder="New password confirmation" ng-model="user.passwordConf">
 				<div class="ge-form-error">This field is required.</div>
 			</div>
 
 			<div class="ge-form-group">
 				<label>
-					<input type="checkbox" name="role"ng-model="user.password">
+					<input type="checkbox" name="role"ng-model="user.role">
 					Admin
 				</label>
 			</div>
@@ -82,13 +82,13 @@
 
 
 			<div class="ge-form-group ge-form-group-with-errors">
-				<input type="password" name="password_confirmation" placeholder="Password" ng-model="user.password">
+				<input type="password" name="password_confirmation" placeholder="Password" ng-model="user.passwordConf">
 				<div class="ge-form-error">This field is required.</div>
 			</div>
 
 			<div class="ge-form-group">
 				<label>
-					<input type="checkbox" name="role" ng-checked="user.role == 'ADMIN'" ng-model="user.password">
+					<input type="checkbox" name="role" ng-checked="user.role == 'ADMIN'" ng-model="user.role">
 					Admin
 				</label>
 			</div>
