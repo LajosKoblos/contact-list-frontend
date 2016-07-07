@@ -27,12 +27,9 @@ angular.module('myApp.groups', ['ngRoute'])
 
 		if($scope.state=="edit")
 		{
-			console.log($scope.group);
-			console.log($scope.groups);
 			$scope.group = $scope.groups.filter( function ( group ) {
 				return (group.name === $scope.currentGroupId);
 			})[0];
-			console.log($scope.group);
 		}
 	});
 

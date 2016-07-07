@@ -14,17 +14,22 @@ angular.module('myApp.authentication', ['ngRoute', 'authServiceModule'])
 })
 
 .controller('authenticationCtrl', function ($scope, $rootScope, $location, authService, Auth) {
+	$rootScope.userName = '';
+	
 	$scope.user = { userName: '', password: '' };
 	$scope.error = '';
 
 	$scope.login = function () {
 		authService.login($scope.user).then( function ( response ) {
-			console.log(response);
-			
 			Auth.setRole(response.role);
-			var path = (response.role === 'USER') ? '/groups' : '/users';
-			$location.path(path);
+
+			var isAdmin = (response.role === 'ADMIN');
+			
+			$rootScope.userIsLoggedIn = true;
+			$rootScope.userName = $scope.user.userName;
+			$rootScope.userIsAdmin = isAdmin;
 			$scope.error = '';
+			$location.path(isAdmin ? '/users' : '/groups');
 
 		 }, function ( error ) {
 

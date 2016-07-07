@@ -16,14 +16,14 @@
 	<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-	<header ng-if="Auth.isLoggedIn">
+	<header ng-if="userIsLoggedIn">
 		<div id="ge-header-left">
 			<a href="#" id="ge-header-logo">
 				<span>Academy Contacts</span>
 			</a>
 
 			<ul id="ge-header-tabs">
-				<li>
+				<li ng-if="userIsAdmin">
 					<a href="#!/users">
 						<i class="fa fa-users" aria-hidden="true"></i>
 						Users
@@ -61,9 +61,9 @@
 	<script src="authentication/authentication.js"></script>
 	<script src="groups_contacts_show/groups_contacts_show.js"></script>
 	<script src="groups/groups.js"></script>
+	<script src="users/users.js"></script>
 
 	<script src="user_list/user_list.js"></script>
-	<script src="users/users.js"></script>
 	<script src="user_creation/user_creation.js"></script>
 	<script src="components/version/version.js"></script>
 	<script src="components/version/version-directive.js"></script>

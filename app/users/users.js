@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.Users', ['ngRoute'])
+angular.module('myApp.users', ['ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
@@ -26,6 +26,8 @@ angular.module('myApp.Users', ['ngRoute'])
 		
 		$scope.users = users;
 		$scope.currentUserName = (!$routeParams.username && $scope.state !== 'new') ? $scope.users[0].userName : $routeParams.username;
+		$scope.user.passwordConf = "";
+		$scope.passwordIsOk = false;
 
 
 		var matchedUsers = $scope.users.filter( function ( user ) {
@@ -49,14 +51,12 @@ angular.module('myApp.Users', ['ngRoute'])
 
 	$scope.createUser = function() {
 
-		console.log("$scope.user" );
 		$scope.user.role = $scope.user.role ? "ADMIN" : "USER";
-		console.log($scope.user);
-
-		userService.createUser($scope.user).then(function ( response ) {
-			console.log(response)
-			$location.path('/users/edit/:');
-		});
+		if ($scope.passwordIsOk){
+			userService.createUser($scope.user).then(function ( response ) {
+				$location.path('/users/edit/:');
+			});
+		}
 	};
 
 	$scope.editUser = function() {
@@ -67,5 +67,10 @@ angular.module('myApp.Users', ['ngRoute'])
 		contactService.changeUserPassword()
 		contactService.setRole()
 	};
+
+	$scope.passwordsAreMatching = function () {
+		$scope.passwordIsOk = ($scope.user.password === $scope.user.passwordConf )
+		return $scope.passwordIsOk
+	}
 
 });
