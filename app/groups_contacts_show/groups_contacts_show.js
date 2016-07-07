@@ -58,14 +58,20 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 	});
 
 	$scope.createContact = function() {
-		contactService.addContactToGroup($scope.groupId, $scope.contact).then(function ( data ) {
+		contactService.addContactToGroup($scope.groupId, $scope.contact).then(function ( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
 		});
 	};
 
 	$scope.editContact = function() {
-		contactService.updateContact($scope.groupId, $scope.contact).then(function ( data ) {
+		contactService.updateContact($scope.groupId, $scope.contact).then(function ( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/show/' + $scope.currentContactId);
+		});
+	};
+
+	$scope.deleteContact = function( contactId ) {
+		contactService.deleteContact($scope.groupId, contactId).then(function( response ) {
+			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
 		});
 	};
 });
