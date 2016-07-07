@@ -44,9 +44,8 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 				return (contact.id === $scope.currentContactId);
 			});
 
-			$scope.contact = (matchedContacts.length > 0) ? matchedContacts[0] : null;
+			$scope.contact = (matchedContacts.length > 0) ? matchedContacts[0] : {};
 
-			// TODO !!!! /new/1 ?!?!?!
 			switch( $scope.state ) {
 				case 'new':
 					$location.path('/groups/' + $scope.currentGroupId + '/contacts/' + $scope.state);
@@ -57,4 +56,16 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 			
 		});
 	});
+
+	$scope.createContact = function() {
+		contactService.addContactToGroup($scope.groupId, $scope.contact).then(function ( data ) {
+			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
+		});
+	};
+
+	$scope.editContact = function() {
+		contactService.updateContact($scope.groupId, $scope.contact).then(function ( data ) {
+			$location.path('/groups/' + $scope.currentGroupId + '/contacts/show/' + $scope.currentContactId);
+		});
+	};
 });
