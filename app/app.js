@@ -102,8 +102,9 @@ angular.module('myApp', [
 				if ((typeof currentRoute) !== 'undefined' && (typeof currentRoute.$$route) !== 'undefined' ) {
 					defaultPathes.setOLD(currentRoute.$$route.originalPath);
 				}
+				path = "/login";
 				$location.path(path).replace();
-				defaultPathes.cleanOLDPath();path = "/login";
+				defaultPathes.cleanOLDPath();
 
 			}
 
