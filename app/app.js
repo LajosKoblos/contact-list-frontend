@@ -51,6 +51,7 @@ angular.module('myApp', [
     })
     .factory('RedirectFactory', ['Auth', 'DefaultPathes', function (auth, defaultPathes) {
 
+        var oldURL = defaultPathes.OLD();
         function validateRedirect() {
             if (!oldURL.startsWith(defaultPathes.USER) || !oldURL.startsWith(defaultPathes.ADMIN)) {
                 return auth.isLoggedIn() == 'USER' ? defaultPathes.USER : defaultPathes.ADMIN;
@@ -89,8 +90,9 @@ angular.module('myApp', [
 .run(['$rootScope', '$location', 'Auth', 'RedirectFactory', 'DefaultPathes', function ($rootScope, $location, auth, redirectFactory, defaultPathes) {
     $rootScope.$on("$routeChangeStart", function (event, nextRoute, currentRoute) {
 
-        console.log("current");
         console.log(currentRoute);
+
+        console.log(nextRoute);
 
         var loggedIn = auth.isLoggedIn();
         var path;
@@ -98,15 +100,12 @@ angular.module('myApp', [
             path = defaultPathes.hasOldPath() ? redirectFactory.validate() : nextRoute.$$route.originalPath;
 
         } else {      //nincs bejelentkezve
-            if ((typeof currentRoute) !== 'undefined' || (typeof currentRoute.$$route) !== 'undefined' ) {
-
-                console.log("nincs bejelentkezve és van url amiről szeretne tduni.")
-                console.log(currentRoute.$$route);
+            if ((typeof currentRoute) !== 'undefined' && (typeof currentRoute.$$route) !== 'undefined' ) {
                 defaultPathes.setOLD(currentRoute.$$route.originalPath);
             }
-            console.log("nincs url és nincs miről tudni");
-            path = "/";
+            path = "/login";
         }
+        console.log(path);
         $location.path(path).replace();
         defaultPathes.cleanOLDPath();
     });

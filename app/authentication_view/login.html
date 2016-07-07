@@ -1,7 +1,7 @@
 <form ng-submit="login()">
-    <div>
+    <div class="error">
         Username: <input type='text' ng-model='user.userName' placeholder='username' />
-        <div class="error"></div>
+        <div ng-model="error"></div>
     </div>
     <div>
         Password: <input type='password' ng-model='user.password' placeholder='password' />

@@ -19,6 +19,7 @@ authentication.config(function ($routeProvider) {
 authentication.controller('loginController', function ($scope, $rootScope, $location, authService, Auth) {
     $scope.user = {userName: '', password: ''};
 
+    $scope.error = '';
     $scope.login = function () {
         console.log($scope.user);
         authService.login($scope.user).then(
@@ -27,9 +28,16 @@ authentication.controller('loginController', function ($scope, $rootScope, $loca
              var path = (result.role == 'USER') ? "/groups" : "/users";
              $location.path(path);
             console.log(result);
+             $scope.error = '';
          },
          function(error){
-             console.log("error");
+             if (error.status == 401) {
+                 $scope.error = "Incorrect username or password";
+             }
+             if (error.status == 500){
+                 $scope.error = "Incorrect request";
+
+             }
              console.log(error);
          });
         console.log("login");
