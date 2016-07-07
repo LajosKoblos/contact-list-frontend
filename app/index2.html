@@ -16,7 +16,7 @@
 	<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-	<header>
+	<header ng-if="Auth.isLoggedIn">
 		<div id="ge-header-left">
 			<a href="#" id="ge-header-logo">
 				<span>Academy Contacts</span>
@@ -55,7 +55,7 @@
 	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="bundle.js"></script>
 
-	<script src="authentication_view/authentication_view.js"></script>
+	<script src="authentication/authentication.js"></script>
 	<script src="groups_contacts_show/groups_contacts_show.js"></script>
 	<script src="groups/groups.js"></script>
 
