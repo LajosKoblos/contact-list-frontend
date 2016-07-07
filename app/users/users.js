@@ -34,6 +34,9 @@ angular.module('myApp.Users', ['ngRoute'])
 		});
 
 		$scope.user = (matchedUsers.length > 0) ? matchedUsers[0] : {};
+
+		$scope.userName = $scope.user.userName
+		$scope.password = $scope.user.password
 		$scope.role = $scope.user.role;
 
 		switch( $scope.state ) {
@@ -48,7 +51,8 @@ angular.module('myApp.Users', ['ngRoute'])
 	});
 
 	$scope.createUser = function() {
-		userService.createUser($scope.groupId, $scope.contact).then(function ( response ) {
+		userService.createUser({userName: user.userName, password: user.password, role: user.role}).then(function ( response ) {
+			console.log(response)
 			$location.path('/users/new');
 		});
 	};

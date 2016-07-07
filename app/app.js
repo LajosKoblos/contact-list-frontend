@@ -15,7 +15,6 @@ angular.module('myApp', [
 	'myApp.version',
 	'myApp.groupsContactsShow',
 	'myApp.user_list',
-	'myApp.user_creation',
 	'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
