@@ -45,7 +45,7 @@ angular.module('myApp', [
             setOLD: setOldPath,
             cleanOLDPath: clean,
             hasOldPath: function () {
-                return oldURL == '';
+                return oldURL !== '';
             }
         }
     })
@@ -97,8 +97,8 @@ angular.module('myApp', [
         var loggedIn = auth.isLoggedIn();
         var path;
         if (loggedIn) {           //valaki bejelentkezve vam
-            path = defaultPathes.hasOldPath() ? redirectFactory.validate() : nextRoute.$$route.originalPath;
-
+            // path = defaultPathes.hasOldPath() ? redirectFactory.validate() : nextRoute.$$route.originalPath;
+            path = nextRoute.$$route.originalPath;
         } else {      //nincs bejelentkezve
             if ((typeof currentRoute) !== 'undefined' && (typeof currentRoute.$$route) !== 'undefined' ) {
                 defaultPathes.setOLD(currentRoute.$$route.originalPath);

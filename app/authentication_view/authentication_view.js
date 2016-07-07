@@ -11,7 +11,6 @@ authentication.config(function ($routeProvider) {
         loginRequired: true
     });
     $routeProvider.when('/logout', {
-        //templateUrl: '/authentication_view/login.html',
         controller: 'loginController'
     });
 
@@ -21,13 +20,13 @@ authentication.controller('loginController', function ($scope, $rootScope, $loca
 
     $scope.error = '';
     $scope.login = function () {
-        console.log($scope.user);
+        // console.log($scope.user);
         authService.login($scope.user).then(
          function (result) {
              Auth.setRole(result.role);
              var path = (result.role == 'USER') ? "/groups" : "/users";
              $location.path(path);
-            console.log(result);
+            // console.log(result);
              $scope.error = '';
          },
          function(error){
@@ -37,17 +36,17 @@ authentication.controller('loginController', function ($scope, $rootScope, $loca
              if (error.status == 500){
                  $scope.error = error;
              }
-             console.log(error);
+             // console.log(error);
          });
-        console.log("login");
+        // console.log("login");
     }
 
 
     $scope.logout = function () {
         authService.logout();
         $scope.user = {userName: '', password: ''};
-        $scope.loginError = false;
-        $scope.tokenID = '';
+        // $scope.loginError = false;
+        // $scope.tokenID = '';
         $location.path('/login');
     }
 });
