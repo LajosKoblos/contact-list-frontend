@@ -40,13 +40,14 @@
 	</ul>
 
 	<div class="ge-footer-bar ge-list-footer">
-		<a href="#!/groups/:groupId/contacts/new" class="ge-action ge-action-animated ge-text-blue"><i class="fa fa-plus" aria-hidden="true"></i></a>
+		<a href="#!/groups/{{ currentGroupId }}/contacts/new" class="ge-action ge-action-animated ge-text-blue"><i class="fa fa-plus" aria-hidden="true"></i></a>
 	</div>
 </div>
 
 
 <!-- CONTACT SHOW -->
-<div class="ge-details ge-bg-white">
+<div class="ge-details ge-bg-white" ng-if="state === 'show'">
+
 	<div class="ge-details-content">
 		
 		<div class="ge-details-title">{{ contact.firstName }} {{ contact.lastName }}</div>
@@ -100,11 +101,94 @@
 				<div class="ge-details-list-value">{{ contact.jobTitle }}</div>
 			</li>
 		</ul>
-
 	</div>
 
 	<div class="ge-footer-bar ge-details-footer">
-		<a href="#" class="ge-action ge-action-animated ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+		<a href="#!/groups/{{ currentGroupId }}/contacts/edit/{{ contact.id }}" class="ge-action ge-action-animated ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 		<a href="#" class="ge-action ge-action-animated ge-text-red"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+	</div>
+</div>
+
+<!-- NEW -->
+<div class="ge-details ge-bg-white" ng-if="state === 'new'">
+
+	<div class="ge-details-content">
+		
+		<div class="ge-details-title">Create new contact</div>
+
+		<div class="ge-details-form ge-form">
+					
+			<div class="ge-form-group ge-form-group-with-errors">
+				<input type="text" name="first_name" placeholder="First name">
+				<div class="ge-form-error">This field is required.</div>
+			</div>
+			
+			<div class="ge-form-group">
+				<input type="text" name="last_name" placeholder="Last name">
+			</div>
+
+			<div class="ge-form-group">
+				<input type="text" name="work_email" placeholder="Work email">
+			</div>
+
+			<div class="ge-form-group">
+				<input type="text" name="home_email" placeholder="Home email">
+			</div>
+
+			<div class="ge-form-group">
+				<input type="text" name="nick_name" placeholder="Nick name">
+			</div>
+
+			<div class="ge-form-group">
+				<input type="text" name="job_title" placeholder="Job title">
+			</div>
+
+		</div>
+	</div>
+
+	<div class="ge-footer-bar ge-details-footer">
+		<a href="#" class="ge-action ge-action-animated ge-text-blue"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
+	</div>
+</div>
+
+<!-- EDIT -->
+<div class="ge-details ge-bg-white" ng-if="state === 'edit'">
+
+	<div class="ge-details-content">
+		
+		<div class="ge-details-title">Edit contact</div>
+
+		<div class="ge-details-form ge-form">
+					
+			<div class="ge-form-group ge-form-group-with-errors">
+				<input type="text" name="first_name" placeholder="First name">
+				<div class="ge-form-error">This field is required.</div>
+			</div>
+			
+			<div class="ge-form-group">
+				<input type="text" name="last_name" placeholder="Last name">
+			</div>
+
+			<div class="ge-form-group">
+				<input type="text" name="work_email" placeholder="Work email">
+			</div>
+
+			<div class="ge-form-group">
+				<input type="text" name="home_email" placeholder="Home email">
+			</div>
+
+			<div class="ge-form-group">
+				<input type="text" name="nick_name" placeholder="Nick name">
+			</div>
+
+			<div class="ge-form-group">
+				<input type="text" name="job_title" placeholder="Job title">
+			</div>
+
+		</div>
+	</div>
+
+	<div class="ge-footer-bar ge-details-footer">
+		<a href="#" class="ge-action ge-action-animated ge-text-blue"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
 	</div>
 </div>
