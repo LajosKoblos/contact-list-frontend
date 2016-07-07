@@ -18,7 +18,11 @@ angular.module('myApp', [
     'myApp.contact_edit',
     'myApp.version',
     'myApp.user_list',
-    'myApp.user_creation'
+    'myApp.user_creation',
+	
+    'myApp.contactDetailedSearch'
+	
+	
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 
