@@ -73,7 +73,7 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 
 	$scope.deleteContact = function( contactId ) {
 
-		contactService.deleteContact($scope.currentGroupId, $contactId).then(function( response ) {
+		contactService.deleteContact($scope.currentGroupId, contactId).then(function( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
 		}, function(response) {console.log(response)});
 	};
