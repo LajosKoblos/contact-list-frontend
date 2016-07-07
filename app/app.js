@@ -18,10 +18,11 @@ angular.module('myApp', [
 	'myApp.groupsContactsShow',
 	'myApp.user_list',
 	'myApp.version',
+	'myApp.view1',
+	'myApp.view2',
 	'myApp.user_creation',
 	'myApp.contactDetailedSearch',
-	'myApp.user_creation',
-	'myApp.contact_edit'
+	'myApp.user_creation'
 	
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
 	// $locationProvider.html5Mode(true);
