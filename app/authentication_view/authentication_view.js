@@ -32,11 +32,10 @@ authentication.controller('loginController', function ($scope, $rootScope, $loca
          },
          function(error){
              if (error.status == 401) {
-                 $scope.error = "Incorrect username or password";
+                 $scope.error = error;
              }
              if (error.status == 500){
-                 $scope.error = "Incorrect request";
-
+                 $scope.error = error;
              }
              console.log(error);
          });
