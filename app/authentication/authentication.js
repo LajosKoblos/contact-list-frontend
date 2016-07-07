@@ -19,11 +19,12 @@ angular.module('myApp.authentication', ['ngRoute', 'authServiceModule'])
 
 	$scope.login = function () {
 		authService.login($scope.user).then( function ( response ) {
-			 
-			 Auth.setRole(response.role);
-			 var path = (response.role === 'USER') ? "/groups" : "/users";
-			 $location.path(path);
-			 $scope.error = '';
+			console.log(response);
+			
+			Auth.setRole(response.role);
+			var path = (response.role === 'USER') ? '/groups' : '/users';
+			$location.path(path);
+			$scope.error = '';
 
 		 }, function ( error ) {
 
@@ -35,7 +36,6 @@ angular.module('myApp.authentication', ['ngRoute', 'authServiceModule'])
 			}
 
 		 });
-		console.log("login");
 	}
 
 

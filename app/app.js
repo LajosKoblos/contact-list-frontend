@@ -110,11 +110,10 @@ angular.module('myApp', [
 					defaultPathes.setOLD(currentRoute.$$route.originalPath);
 				}
 				path = "/login";
+				console.log(path);
+				$location.path(path).replace();
+				defaultPathes.cleanOLDPath();
 			}
-
-			console.log(path);
-			$location.path(path).replace();
-			defaultPathes.cleanOLDPath();
 		});
 	}
 
