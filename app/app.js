@@ -103,6 +103,7 @@ angular.module('myApp', [
 					defaultPathes.setOLD(currentRoute.$$route.originalPath);
 				}
 				path = "/login";
+
 			}
 			$location.path(path).replace();
 			defaultPathes.cleanOLDPath();
