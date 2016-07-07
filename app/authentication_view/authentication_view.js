@@ -18,17 +18,17 @@ authentication.config(function ($routeProvider) {
 });
 authentication.controller('loginController', function ($scope, $rootScope, $location, authService, Auth) {
     $scope.user = {userName: '', password: ''};
-
+    $rootScope.userName=""
     $scope.error = '';
     $scope.login = function () {
-        console.log($scope.user);
         authService.login($scope.user).then(
          function (result) {
              Auth.setRole(result.role);
              var path = (result.role == 'USER') ? "/groups" : "/users";
              $location.path(path);
-            console.log(result);
+             console.log(result);
              $scope.error = '';
+             $rootScope.userName=$scope.user.userName;
          },
          function(error){
              if (error.status == 401) {

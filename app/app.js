@@ -92,13 +92,6 @@ angular.module('myApp', [
 	})
 	.run(['$rootScope', '$location', 'Auth', 'RedirectFactory', 'DefaultPathes', function ($rootScope, $location, auth, redirectFactory, defaultPathes) {
 		$rootScope.$on("$routeChangeStart", function (event, nextRoute, currentRoute) {
-
-			console.log(currentRoute);
-
-			console.log(nextRoute);
-
-			console.log("old URL");
-			console.log(defaultPathes.hasOldPath())
 			var loggedIn = auth.isLoggedIn();
 			var path;
 			if (loggedIn) {           //valaki bejelentkezve vam
@@ -111,7 +104,6 @@ angular.module('myApp', [
 				}
 				path = "/login";
 			}
-			console.log(path);
 			$location.path(path).replace();
 			defaultPathes.cleanOLDPath();
 		});

@@ -12,8 +12,9 @@ angular.module('myApp.groups', ['ngRoute'])
 	});
 }])
 
-.controller('groupsCtrl', function ($scope, $routeParams, $location, contactGroupService, contactService) {
+.controller('groupsCtrl', function ($scope, $rootScope, $routeParams, $location, contactGroupService, contactService) {
 	$scope.groups = [];
+	$scope.group = {};
 
 	var actionMatches = $location.path().match(/groups\/([\w]*)[\/]?.*/i);
 	$scope.state = (actionMatches.length > 0) ? actionMatches[1] : '';
@@ -25,9 +26,11 @@ angular.module('myApp.groups', ['ngRoute'])
 	});
 
 	$scope.createGroup = function() {
-		contactGroupService.createGroup($scope.group).then(function ( response ) {
+		var group =  { "id": { "userName":$rootScope.userName, "contactGroupName": $scope.group.name }, "displayName":$scope.group.displayName }
+
+		contactGroupService.createGroup(group).then(function ( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
-		});
+		}, function (reason){console.log(reason);});
 	};
 
 	$scope.editGroup = function() {
