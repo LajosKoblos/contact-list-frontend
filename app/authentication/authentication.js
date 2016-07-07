@@ -13,7 +13,7 @@ angular.module('myApp.authentication', ['ngRoute', 'authServiceModule'])
 
 })
 
-.controller('authenticationCtrl', function ($scope, $rootScope, $location, authService, Auth) {
+.controller('authenticationCtrl', function ($scope, $rootScope, $location, $route, authService, Auth) {
 	$rootScope.userName = '';
 	
 	$scope.user = { userName: '', password: '' };
@@ -44,8 +44,13 @@ angular.module('myApp.authentication', ['ngRoute', 'authServiceModule'])
 	}
 
 
-	$scope.logout = function () {
+	$rootScope.logout = function () {
 		authService.logout();
+		
+		$rootScope.userName = '';
+		$rootScope.userIsLoggedIn = false;
+		$rootScope.userIsAdmin = false;
+
 		$scope.user = { userName: '', password: '' };
 		$scope.loginError = false;
 		$scope.tokenID = '';
