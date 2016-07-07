@@ -31,15 +31,14 @@ angular.module('myApp.authentication', ['ngRoute', 'authServiceModule'])
 			$scope.error = '';
 			$location.path(isAdmin ? '/users' : '/groups');
 
-		 }, function ( error ) {
+		 }, function ( errorResponse ) {
 
-			if (error.status == 401) {
-				$scope.error = error;
-			}
-			if (error.status == 500){
-				$scope.error = error;
-			}
-
+				if (errorResponse.status == 401) {
+					$scope.error = errorResponse;
+				}
+				if (error.status == 500){
+					$scope.error = errorResponse;
+				}
 		 });
 	}
 
