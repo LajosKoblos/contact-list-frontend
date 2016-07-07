@@ -19,6 +19,7 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 }])
 
 .controller('groupsContactsShowCtrl', function ($scope,$rootScope, $routeParams, $location, contactGroupService, contactService) {
+	$scope.errors = null;
 	$scope.groups = [];
 	$scope.state = ([ 'show', 'edit', 'new' ].indexOf($routeParams.action) !== -1) ? $routeParams.action : 'show';
 
@@ -56,21 +57,26 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 	});
 
 	$scope.createContact = function() {
-
 		contactService.addContactToGroup($scope.currentGroupId, $scope.contact).then(function ( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
-		}, function(response) {console.log(response)});
+		}, function ( errorResponse ) {
+			$scope.errors = errorResponse.fields;
+		});
 	};
 
 	$scope.editContact = function() {
-		contactService.updateContact($scope.groupId, $scope.contact).then(function ( response ) {
+		var contact = { firstName: $scope.contact.firstName, lastName: $scope.contact.lastName, workEmail: $scope.contact.workEmail, nickName: $scope.contact.nickName, jobTitle: $scope.contact.jobTitle}
+
+		contactService.updateContact($scope.currentGroupId,$scope.currentContactId, contact).then(function ( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/show/' + $scope.currentContactId);
+		}, function ( errorResponse ) {
+			$scope.errors = errorResponse.fields;
 		});
 	};
 
 	$scope.deleteContact = function( contactId ) {
-		contactService.deleteContact($scope.groupId, $contactId).then(function( response ) {
+		contactService.deleteContact($scope.currentGroupId, contactId).then(function( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
-		});
+		}, function(response) {console.log(response)});
 	};
 });

@@ -13,6 +13,7 @@ angular.module('myApp.groups', ['ngRoute'])
 }])
 
 .controller('groupsCtrl', function ($scope, $rootScope, $routeParams, $location, contactGroupService, contactService) {
+	$scope.errors = null;
 	$scope.groups = [];
 	$scope.group = {};
 
@@ -34,17 +35,22 @@ angular.module('myApp.groups', ['ngRoute'])
 	});
 
 	$scope.createGroup = function() {
-		var group =  { "id": { "userName":$rootScope.userName, "contactGroupName": $scope.group.name }, "displayName":$scope.group.displayName }
+		var group = { "id": { "userName":$rootScope.userName, "contactGroupName": $scope.group.name }, "displayName":$scope.group.displayName }
 
 		contactGroupService.createGroup(group).then(function ( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
-		}, function (reason){console.log(reason);});
+		}, function ( errorResponse ) {
+			$scope.errors = errorResponse.fields;
+		});
 	};
 
 	$scope.editGroup = function() {
-		var group =  { "id": { "userName":$rootScope.userName, "contactGroupName": $scope.group.name }, "displayName":$scope.group.displayName }
+		var group = { "id": { "userName":$rootScope.userName, "contactGroupName": $scope.group.name }, "displayName":$scope.group.displayName }
+
 		contactGroupService.renameGroup(group).then(function ( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
+		}, function( errorResponse ) {
+			$scope.errors = errorResponse.fields;
 		});
 	};
 

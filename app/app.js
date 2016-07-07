@@ -17,14 +17,7 @@ angular.module('myApp', [
 	'myApp.groups',
 	'myApp.groupsContactsShow',
 	'myApp.users',
-	'myApp.user_list',
-	'myApp.version',
-	'myApp.view1',
-	'myApp.view2',
-	'myApp.user_creation',
-	'myApp.contactDetailedSearch',
-	'myApp.user_creation'
-	
+	'myApp.version'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
 	// $locationProvider.html5Mode(true);
 	$locationProvider.hashPrefix('!');
