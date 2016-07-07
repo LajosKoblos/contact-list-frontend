@@ -13,6 +13,7 @@ angular.module('myApp', [
 	'contactGroupServiceModule',
 	'userServiceModule',
 	'myApp.version',
+	'myApp.groups',
 	'myApp.groupsContactsShow',
 	'myApp.user_list',
 	'myApp.user_creation',

@@ -6,13 +6,11 @@
 
 	<ul>
 		<li ng-repeat="group in groups" ng-class="{ 'ge-list-item-selected': group.name == currentGroupId }">
-			<a href="#!/groups/{{ group.name }}/contacts">
-				{{ group.displayName}}
-				<div class="ge-list-item-actions">
-					<a href="#!/groups/edit/{{ group.id }}" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-					<!--<a href="javascript:void(0)" class="ge-action ge-text-red"><i class="fa fa-trash-o" aria-hidden="true"></i></a>-->
-				</div>
-			</a>
+			<a href="#!/groups/{{ group.name }}/contacts">{{ group.displayName}}</a>
+			<div class="ge-list-item-actions">
+				<a href="#!/groups/edit/{{ group.name }}" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				<!--<a href="javascript:void(0)" class="ge-action ge-text-red"><i class="fa fa-trash-o" aria-hidden="true"></i></a>-->
+			</div>
 		</li>
 	</ul>
 
@@ -29,13 +27,11 @@
 
 	<ul>
 		<li ng-repeat="contact in contacts | filter:{$:filterName}" ng-class="{ 'ge-list-item-selected': contact.id == currentContactId }">
-			<a href="#!/groups/{{ currentGroupId }}/contacts/show/{{ contact.id }}">
-				{{ contact.firstName }} , {{ contact.lastName }}
-				<div class="ge-list-item-actions">
-					<a href="#!/groups/{{ currentGroupId }}/contacts/edit/{{ contact.id }}" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-					<a href="javascript:void(0)" class="ge-action ge-text-red" ng-click="deleteContact(contact.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-				</div>
-			</a>
+			<a href="#!/groups/{{ currentGroupId }}/contacts/show/{{ contact.id }}">{{ contact.firstName }} , {{ contact.lastName }}</a>
+			<div class="ge-list-item-actions">
+				<a href="#!/groups/{{ currentGroupId }}/contacts/edit/{{ contact.id }}" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+				<a href="javascript:void(0)" class="ge-action ge-text-red" ng-click="deleteContact(contact.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+			</div>
 		</li>
 	</ul>
 

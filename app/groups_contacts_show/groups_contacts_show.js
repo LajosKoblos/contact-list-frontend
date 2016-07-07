@@ -15,9 +15,6 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 	}).when('/groups/:groupId/contacts/:action/:contactId', {
 		templateUrl: 'groups_contacts_show/groups_contacts_show.html',
 		controller: 'groupsContactsShowCtrl'
-	}).when('/groups/:groupId/contacts/:action/:contactId', {
-		templateUrl: 'groups_contacts_show/groups_contacts_show.html',
-		controller: 'groupsContactsShowCtrl'
 	});
 }])
 
@@ -70,7 +67,7 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 	};
 
 	$scope.deleteContact = function( contactId ) {
-		contactService.deleteContact($scope.groupId, contactId).then(function( response ) {
+		contactService.deleteContact($scope.groupId, $contactId).then(function( response ) {
 			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
 		});
 	};
