@@ -24,7 +24,7 @@ angular.module('myApp.users', ['ngRoute'])
 
 	userService.getUsers().then(function (users) {
 
-		$scope.users = users;
+		$scope.users = users.sort(function(a,b){return a.userName.localeCompare(b.userName);});
 		$scope.currentUserName = (!$routeParams.username && $scope.state !== 'new') ? $scope.users[0].userName : $routeParams.username;
 		$scope.passwordIsOk = false;
 
@@ -48,7 +48,7 @@ angular.module('myApp.users', ['ngRoute'])
 		//$scope.currentUserName = $scope.user.userName;
 
 		userService.createUser($scope.user).then(function ( response ) {
-			$location.path('/users/');
+			$location.path('/users/show/' + $scope.user.userName);
 		},function ( errorResponse ) {
 			$scope.errors = errorResponse.fields;
 		});
