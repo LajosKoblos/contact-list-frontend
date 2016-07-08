@@ -20,27 +20,19 @@ angular.module('myApp.users', ['ngRoute'])
 
 .controller('UsersCtrl', function ($scope, $routeParams, $location, userService) {
 
-	if (['edit', 'new'].indexOf($routeParams.action) !== -1) {
-		$scope.state = $routeParams.action;
-	} else {
-		$scope.state = 'edit';
-	}
+	$scope.state = ([ 'edit', 'new' , 'show' ].indexOf($routeParams.action) !== -1) ? $routeParams.action : 'show';
 
 	userService.getUsers().then(function (users) {
-		
+
 		$scope.users = users;
 		$scope.currentUserName = (!$routeParams.username && $scope.state !== 'new') ? $scope.users[0].userName : $routeParams.username;
-		$scope.user.passwordConf = "";
 		$scope.passwordIsOk = false;
-
 
 		var matchedUsers = $scope.users.filter( function ( user ) {
 			return (user.userName === $scope.currentUserName);
 		});
 
 		$scope.user = (matchedUsers.length > 0) ? matchedUsers[0] : {};
-
-		console.log(matchedUsers[0]);
 
 			switch( $scope.state ) {
 			case 'new':
@@ -49,18 +41,17 @@ angular.module('myApp.users', ['ngRoute'])
 			default:
 				$location.path('/users/' + $scope.state + '/' + $scope.currentUserName);
 		}
-
-
 	});
 
 	$scope.createUser = function() {
+		$scope.user.role = $scope.user.role || 'USER';
+		//$scope.currentUserName = $scope.user.userName;
 
-		$scope.user.role = $scope.user.role ? "ADMIN" : "USER";
-		if ($scope.passwordIsOk){
-			userService.createUser($scope.user).then(function ( response ) {
-				$location.path('/users/edit/:');
-			});
-		}
+		userService.createUser($scope.user).then(function ( response ) {
+			$location.path('/users/');
+		},function ( errorResponse ) {
+			$scope.errors = errorResponse.fields;
+		});
 	};
 
 	$scope.editUser = function() {
@@ -71,10 +62,5 @@ angular.module('myApp.users', ['ngRoute'])
 		contactService.changeUserPassword()
 		contactService.setRole()
 	};
-
-	$scope.passwordsAreMatching = function () {
-		$scope.passwordIsOk = ($scope.user.password === $scope.user.passwordConf )
-		return $scope.passwordIsOk
-	}
 
 });
