@@ -3,7 +3,7 @@
 	<div id="ge-login-box-logo"></div>
 
 	<div class="ge-form-title">User login</div>
-
+	<form ng-submit="login()">
 	<div class="ge-form-group">
 		<input type="text" name="username" placeholder="Username" ng-model="user.userName">
 		<div class="ge-form-error" ng-if="error">{{ error.data.message }}</div>
@@ -16,4 +16,5 @@
 	<div class="ge-form-group">
 		<input type="submit" name="submit" value="Login" ng-click="login()">
 	</div>
+	</form>
 </div>
