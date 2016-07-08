@@ -54,13 +54,11 @@
 
 		<div class="ge-details-form ge-form">
 					
-			<div class="ge-form-group ge-form-group-with-errors">
-				<input type="text" name="name" placeholder="name" ng-model="group.name">
-				<div class="ge-form-error">This field is required.</div>
-			</div>
+			<!-- without name field -->
 			
-			<div class="ge-form-group">
+			<div class="ge-form-group" ng-class="{ 'ge-form-group-with-errors': errors.displayName }">
 				<input type="text" name="display_name" placeholder="Display name" ng-model="group.displayName">
+				<div class="ge-form-error" ng-if="errors.displayName">{{ errors.displayName[0] }}</div>
 			</div>
 		</div>
 	</div>
