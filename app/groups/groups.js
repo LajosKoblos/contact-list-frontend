@@ -22,7 +22,9 @@ angular.module('myApp.groups', ['ngRoute'])
 
 	contactGroupService.listGroups().then(function (groups) {
 		
-		$scope.groups = groups;
+		$scope.groups = groups.sort(function(a,b){return a.displayName.localeCompare(b.displayName);});
+		if (groups.length > 0) {
+
 		$scope.currentGroupId = (!$routeParams.groupId) ? $scope.groups[0].name : $routeParams.groupId;
 
 
@@ -32,14 +34,19 @@ angular.module('myApp.groups', ['ngRoute'])
 				return (group.name === $scope.currentGroupId);
 			})[0];
 		}
+		}
+		else {
+			$scope.currentGroupId=null
+		}
 	});
 
 	$scope.createGroup = function() {
 		var group = { "id": { "userName":$rootScope.userName, "contactGroupName": $scope.group.name }, "displayName":$scope.group.displayName }
 
 		contactGroupService.createGroup(group).then(function ( response ) {
-			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
+			$location.path('/groups/' + $scope.group.name + '/contacts/');
 		}, function ( errorResponse ) {
+			console.log(errorResponse);
 			$scope.errors = errorResponse.fields;
 		});
 	};

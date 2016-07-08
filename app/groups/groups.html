@@ -5,7 +5,7 @@
 	</div>      
 
 	<ul>
-		<li ng-repeat="group in groups | orderBy: 'displayName'" ng-class="{ 'ge-list-item-selected': group.name == currentGroupId }">
+		<li ng-repeat="group in groups" ng-class="{ 'ge-list-item-selected': group.name == currentGroupId }">
 			<a href="#!/groups/{{ group.name }}/contacts">{{ group.displayName}}</a>
 			<div class="ge-list-item-actions">
 				<a href="#!/groups/edit/{{ group.name }}" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
@@ -28,12 +28,12 @@
 
 		<div class="ge-details-form ge-form">
 					
-			<div class="ge-form-group" ng-class="{ 'ge-form-group-with-errors': errors.name }">
+			<div class="ge-form-group" ng-class="{ 'ge-form-group-with-errors': errors.name[0] }">
 				<input type="text" name="name" placeholder="name" ng-model="group.name">
 				<div class="ge-form-error" ng-if="errors.name">{{ errors.name[0] }}</div>
 			</div>
 			
-			<div class="ge-form-group" ng-class="{ 'ge-form-group-with-errors': errors.displayName }">
+			<div class="ge-form-group" ng-class="{ 'ge-form-group-with-errors': errors.displayName[0] }">
 				<input type="text" name="display_name" placeholder="Display name" ng-model="group.displayName">
 				<div class="ge-form-error" ng-if="errors.displayName">{{ errors.displayName[0] }}</div>
 			</div>
@@ -54,13 +54,11 @@
 
 		<div class="ge-details-form ge-form">
 					
-			<div class="ge-form-group ge-form-group-with-errors">
-				<input type="text" name="name" placeholder="name" ng-model="group.name">
-				<div class="ge-form-error">This field is required.</div>
-			</div>
+			<!-- without name field -->
 			
-			<div class="ge-form-group">
+			<div class="ge-form-group" ng-class="{ 'ge-form-group-with-errors': errors.displayName[0] }">
 				<input type="text" name="display_name" placeholder="Display name" ng-model="group.displayName">
+				<div class="ge-form-error" ng-if="errors.displayName">{{ errors.displayName[0] }}</div>
 			</div>
 		</div>
 	</div>

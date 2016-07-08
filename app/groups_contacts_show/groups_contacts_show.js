@@ -25,10 +25,19 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 
 	contactGroupService.listGroups().then(function (groups) {
 
-		$scope.groups = groups;
+		$scope.groups = groups.sort(function(a,b){return a.displayName.localeCompare(b.displayName);});
+
+
+		var matchedGroups = $scope.groups.filter(function (group) {
+			return (group.id === $scope.currentGroupId);
+		});
+
+		$scope.currentGroup = (matchedGroups.length > 0) ? matchedGroups[0] : {};
+
 		$scope.contacts = [];
         $scope.contact={};
-		$scope.currentGroupId = (!$routeParams.groupId) ? $scope.groups[0].name : $routeParams.groupId;
+        if (groups.length > 0) {
+            $scope.currentGroupId = (!$routeParams.groupId) ? $scope.groups[0].name : $routeParams.groupId;
 
 		contactService.getContactsInGroup($scope.currentGroupId).then(function ( contacts ) {
 			// Creating 'id' property for each contact object
@@ -36,24 +45,36 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
                 contact.id = contact.links[0].href.split('/').slice(-1).pop();
 			});
 
-			$scope.contacts = contacts;
-			$scope.currentContactId = (!$routeParams.contactId && $scope.state !== 'new') ? $scope.contacts[0].id : $routeParams.contactId;
+			$scope.contacts = contacts.sort(function(a,b){return a.firstName.localeCompare(b.firstName);});
+            if (contacts.length > 0) {
 
-			var matchedContacts = $scope.contacts.filter( function ( contact ) {
-				return (contact.id === $scope.currentContactId);
-			});
+                $scope.currentContactId = (!$routeParams.contactId && $scope.state !== 'new') ? $scope.contacts[0].id : $routeParams.contactId;
 
-			$scope.contact = (matchedContacts.length > 0) ? matchedContacts[0] : {};
+                var matchedContacts = $scope.contacts.filter(function (contact) {
+                    return (contact.id === $scope.currentContactId);
+                });
 
-			switch( $scope.state ) {
-				case 'new':
-					$location.path('/groups/' + $scope.currentGroupId + '/contacts/' + $scope.state);
-					break;
-				default:
-					$location.path('/groups/' + $scope.currentGroupId + '/contacts/' + $scope.state + '/' + $scope.currentContactId);
-			}
-			
+                $scope.contact = (matchedContacts.length > 0) ? matchedContacts[0] : {};
+
+                switch ($scope.state) {
+                    case 'new':
+                        $location.path('/groups/' + $scope.currentGroupId + '/contacts/' + $scope.state);
+                        break;
+                    default:
+                        $location.path('/groups/' + $scope.currentGroupId + '/contacts/' + $scope.state + '/' + $scope.currentContactId);
+                }
+            }
+            else
+            {
+                $scope.currentContactId = null;
+            }
 		});
+        }
+        else {
+            $scope.contacts = [];
+            $scope.currentGroupId = null;
+            $scope.currentContactId = null;
+        }
 	});
 
 	$scope.createContact = function() {
@@ -65,18 +86,36 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 	};
 
 	$scope.editContact = function() {
-		var contact = { firstName: $scope.contact.firstName, lastName: $scope.contact.lastName, workEmail: $scope.contact.workEmail, nickName: $scope.contact.nickName, jobTitle: $scope.contact.jobTitle}
+		if ($scope.currentContactId && $scope.currentGroupId) {
+			var contact = {
+				firstName: $scope.contact.firstName,
+				lastName: $scope.contact.lastName,
+				workEmail: $scope.contact.workEmail,
+				nickName: $scope.contact.nickName,
+				jobTitle: $scope.contact.jobTitle
+			}
 
-		contactService.updateContact($scope.currentGroupId,$scope.currentContactId, contact).then(function ( response ) {
-			$location.path('/groups/' + $scope.currentGroupId + '/contacts/show/' + $scope.currentContactId);
-		}, function ( errorResponse ) {
-			$scope.errors = errorResponse.fields;
-		});
+			contactService.updateContact($scope.currentGroupId, $scope.currentContactId, contact).then(function (response) {
+				$location.path('/groups/' + $scope.currentGroupId + '/contacts/show/' + $scope.currentContactId);
+			}, function (errorResponse) {
+				$scope.errors = errorResponse.fields;
+			});
+		}else {
+			console.log("No group or contact selected");
+		}
 	};
 
-	$scope.deleteContact = function( contactId ) {
-		contactService.deleteContact($scope.currentGroupId, contactId).then(function( response ) {
-			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
-		}, function(response) {console.log(response)});
-	};
+    $scope.deleteContact = function (contactId) {
+		if ($scope.currentContactId && $scope.currentGroupId) {
+			if (window.confirm("Are you sure you want to delete " + $scope.contact.firstName + " " + $scope.contact.lastName + "?")) {
+				contactService.deleteContact($scope.currentGroupId, contactId).then(function (response) {
+					$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
+				}, function (response) {
+					console.log(response)
+				});
+			}
+		} else {
+			console.log("No group or contact selected");
+		}
+    };
 });

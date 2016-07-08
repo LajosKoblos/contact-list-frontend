@@ -36,9 +36,10 @@ angular.module('myApp.authentication', ['ngRoute', 'authServiceModule'])
 				if (errorResponse.status == 401) {
 					$scope.error = errorResponse;
 				}
-				if (error.status == 500){
+				if (errorResponse.status == 500){
 					$scope.error = errorResponse;
 				}
+				console.log(errorResponse);
 		 });
 	}
 
