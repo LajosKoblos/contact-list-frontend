@@ -32,6 +32,7 @@ angular.module('myApp.contactDetailedSearch', ['ngRoute', 'contactServiceModule'
 
         $scope.refreshContact = function (responseContact) {
             $scope.responseContact = responseContact;
+            $scope.currentGroupId = $scope.responseContact.name;
         }
 
     });
