@@ -19,21 +19,25 @@ angular.module('myApp.contactDetailedSearch', ['ngRoute', 'contactServiceModule'
             contactService.getContactByExample('dummyGroupIdNotNeeded', $scope.contact).then(function (response) {
 
                 $scope.responseContacts = response;
+                $scope.responseContacts.forEach(function(contact){contact.id = contact._links.self.href.split('/').slice(-1).pop();});
+
                 // console.log(response);
                 $scope.currentGroupId = $scope.responseContacts[0].name;
 
                 if ($scope.responseContacts.length > 0) {
                     $scope.responseContact = $scope.responseContacts[0];
-                    $scope.responseContact.id = $scope.responseContact._links.self.href.split('/').slice(-1).pop();
-                    $scope.currentGroupId = $scope.responseContacts[0].name;
+                     $scope.currentGroupId = $scope.responseContacts[0].name;
                 }
             });
         };
 
-        $scope.refreshContact = function (responseContact) {
-
-            $scope.responseContact = responseContact;
-            $scope.currentGroupId = $scope.responseContact.id;
+        $scope.refreshContact = function (newResponseContact) {
+            console.log($scope.responseContacts);
+            $scope.responseContact = newResponseContact;
+            $scope.currentContactId = $scope.responseContact.id;
+            // console.log($scope.responseContacts);
+            // console.log($scope.responseContact);
+            // console.log($scope.currentContactId);
         }
 
     });
