@@ -26,11 +26,7 @@ angular.module('myApp.users', ['ngRoute'])
 
 		$scope.users = users;
 		$scope.currentUserName = (!$routeParams.username && $scope.state !== 'new') ? $scope.users[0].userName : $routeParams.username;
-		//$scope.user.passwordConf = "";
 		$scope.passwordIsOk = false;
-
-		$scope.errors = null;
-
 
 		var matchedUsers = $scope.users.filter( function ( user ) {
 			return (user.userName === $scope.currentUserName);
@@ -45,20 +41,15 @@ angular.module('myApp.users', ['ngRoute'])
 			default:
 				$location.path('/users/' + $scope.state + '/' + $scope.currentUserName);
 		}
-
-
 	});
 
 	$scope.createUser = function() {
+		$scope.user.role = $scope.user.role || 'USER';
+		//$scope.currentUserName = $scope.user.userName;
 
-		$scope.user.role = $scope.user.role ? "ADMIN" : "USER";
-		$scope.currentUserName = $scope.user.userName;
-
-		console.log($scope.user)
 		userService.createUser($scope.user).then(function ( response ) {
-			console.log(response)
-			$location.path( '/users/' );
-		},function (errorResponse) {
+			$location.path('/users/');
+		},function ( errorResponse ) {
 			$scope.errors = errorResponse.fields;
 		});
 	};

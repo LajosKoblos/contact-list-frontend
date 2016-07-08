@@ -5,10 +5,10 @@
 	</div>      
 
 	<ul>
-		<li ng-repeat="user in users" ng-class="{ 'ge-list-item-selected': user.userName == currentUserName }">
+		<li ng-repeat="user in users" ng-class="{ 'ge-list-item-selected': user.userName === currentUserName }">
 			<a href="#!/users/show/{{ user.userName }}">
 				{{ user.userName}}
-				<div class="ge-list-item-actions">
+				<div class="ge-list-item-actions" style="display: none; /* FOR DEV ONLY */">
 					<a href="#!/users/edit/{{ user.userName }}" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 				</div>
 			</a>
@@ -30,26 +30,20 @@
 
 		<div class="ge-details-form ge-form">
 
-			<div class="ge-form-group ge-form-group-with-errors">
+			<div class="ge-form-group" ng-class="{ 'ge-form-group-with-errors': errors.userName[0] }">
 				<input type="text" name="userName" placeholder="User name" ng-model="user.userName">
-				<div class="ge-form-error">This field is required.</div>
+				<div class="ge-form-error" ng-if="errors.userName[0]">{{ errors.userName[0] }}</div>
 			</div>
 
 
-			<div class="ge-form-group ge-form-group-with-errors">
-				<input type="password" name="new_password" placeholder="New password" ng-model="user.password">
-				<div class="ge-form-error">This field is required.</div>
+			<div class="ge-form-group" ng-class="{ 'ge-form-group-with-errors': errors.password[0] }">
+				<input type="password" name="password" placeholder="Password" ng-model="user.password">
+				<div class="ge-form-error" ng-if="errors.password[0]">{{ errors.password[0] }}</div>
 			</div>
-
-			<div class="ge-form-group ge-form-group-with-errors">
-				<input type="password" name="new_password_confirmation" placeholder="New password confirmation" ng-model="passwordConf">
-				<div class="ge-form-error">This field is required.</div>
-			</div>
-
 
 			<div class="ge-form-group">
 				<label>
-					<input type="checkbox" name="role"ng-model="user.role">
+					<input type="checkbox" name="role" ng-model="user.role" ng-true-value="'ADMIN'" ng-false-value="'USER'">
 					Admin
 				</label>
 			</div>
@@ -71,20 +65,20 @@
 
 		<div class="ge-details-form ge-form">
 
-			<div class="ge-form-group ge-form-group-with-errors">
-				<input type="text" name="userName" placeholder="User name" ng-model="user.userName" required>
-				<div class="ge-form-error">This field is required.</div>
+			<div class="ge-form-group">
+				<input type="text" name="userName" placeholder="User name" ng-model="user.userName">
+				<div class="ge-form-error"></div>
 			</div>
 
-			<div class="ge-form-group ge-form-group-with-errors">
+			<div class="ge-form-group">
 				<input type="password" name="password" placeholder="Password" ng-model="user.password">
-				<div class="ge-form-error">This field is required.</div>
+				<div class="ge-form-error"></div>
 			</div>
 
 
-			<div class="ge-form-group ge-form-group-with-errors">
+			<div class="ge-form-group">
 				<input type="password" name="password_confirmation" placeholder="Password confirmation" ng-model="passwordConf">
-				<div class="ge-form-error">This field is required.</div>
+				<div class="ge-form-error"></div>
 			</div>
 
 			<div class="ge-form-group">
