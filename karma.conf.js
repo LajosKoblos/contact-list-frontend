@@ -10,8 +10,8 @@ module.exports = function(config) {
       'bower_components/angular-mocks/angular-mocks.js',
       'bundle.js',
       'components/**/*.js',
-      'view*/**/*.js',
-      'user_list/**/*.js',
+      'users/**/*.js',
+      'groups*/**/*.js',
       'authentication/**/*.js'
     ],
 

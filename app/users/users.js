@@ -20,7 +20,11 @@ angular.module('myApp.users', ['ngRoute'])
 
 .controller('UsersCtrl', function ($scope, $routeParams, $location, userService) {
 
-	$scope.state = ([ 'edit', 'new' ].indexOf($routeParams.action) !== -1) ? $routeParams.action : 'edit';
+	if (['edit', 'new'].indexOf($routeParams.action) !== -1) {
+		$scope.state = $routeParams.action;
+	} else {
+		$scope.state = 'edit';
+	}
 
 	userService.getUsers().then(function (users) {
 		
