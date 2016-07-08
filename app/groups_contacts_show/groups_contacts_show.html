@@ -27,7 +27,7 @@
 
 	<ul>
 		<li ng-repeat="contact in contacts | filter:{$:filterName}" ng-class="{ 'ge-list-item-selected': contact.id == currentContactId }">
-			<a href="#!/groups/{{ currentGroupId }}/contacts/show/{{ contact.id }}">{{ contact.firstName }} , {{ contact.lastName }}</a>
+			<a href="#!/groups/{{ currentGroupId }}/contacts/show/{{ contact.id }}">{{ contact.firstName }} {{ contact.lastName }}</a>
 			<div class="ge-list-item-actions">
 				<a href="#!/groups/{{ currentGroupId }}/contacts/edit/{{ contact.id }}" class="ge-action ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 				<a href="javascript:void(0)" class="ge-action ge-text-red" ng-click="deleteContact(contact.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
