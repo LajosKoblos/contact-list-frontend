@@ -27,18 +27,16 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 
 		$scope.groups = groups.sort(function(a,b){return a.displayName.localeCompare(b.displayName);});
 
-
-		var matchedGroups = $scope.groups.filter(function (group) {
-			return (group.id === $scope.currentGroupId);
-		});
-
-		$scope.currentGroup = (matchedGroups.length > 0) ? matchedGroups[0] : {};
-
 		$scope.contacts = [];
         $scope.contact={};
         if (groups.length > 0) {
             $scope.currentGroupId = (!$routeParams.groupId) ? $scope.groups[0].name : $routeParams.groupId;
+			
+			var matchedGroups = $scope.groups.filter(function (group) {
+				return (group.name === $scope.currentGroupId);
+			});
 
+			$scope.currentGroup = (matchedGroups.length > 0) ? matchedGroups[0] : {};
 		contactService.getContactsInGroup($scope.currentGroupId).then(function ( contacts ) {
 			// Creating 'id' property for each contact object
 			contacts.forEach( function ( contact ) {
