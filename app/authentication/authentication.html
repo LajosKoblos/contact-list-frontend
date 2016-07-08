@@ -6,6 +6,7 @@
 
 	<div class="ge-form-group">
 		<input type="text" name="username" placeholder="Username" ng-model="user.userName">
+		<div class="ge-form-error" ng-if="error">{{ error.data.message }}</div>
 	</div>
 	
 	<div class="ge-form-group">
