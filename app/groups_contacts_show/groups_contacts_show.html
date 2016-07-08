@@ -42,7 +42,7 @@
 
 
 <!-- CONTACT SHOW -->
-<div class="ge-details ge-bg-white" ng-if="state === 'show'">
+<div class="ge-details ge-bg-white" ng-if="state === 'show' && currentContactId">
 
 	<div class="ge-details-content">
 		
@@ -50,7 +50,7 @@
 
 		<div class="ge-details-subtitle">
 			<i class="fa fa-link" aria-hidden="true"></i>
-			Member of group '<a href="#" class="ge-text-blue">Apple</a>'
+			Member of group '<a href="#!/groups/{{ currentGroup.name }}/contacts" class="ge-text-blue"> {{currentGroup.displayName}}</a>'
 		</div>
 
 		<ul class="ge-details-list">
@@ -103,6 +103,8 @@
 		<a href="#!/groups/{{ currentGroupId }}/contacts/edit/{{ contact.id }}" class="ge-action ge-action-animated ge-text-green"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 		<a href="javascript:void(0)" class="ge-action ge-action-animated ge-text-red" ng-click="deleteContact(contact.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 	</div>
+</div>
+<div class="ge-details ge-bg-white" ng-if="state === 'show' && !currentContactId">
 </div>
 
 <!-- NEW -->
@@ -195,6 +197,6 @@
 	</div>
 
 	<div class="ge-footer-bar ge-details-footer">
-		<a href="javascript:void(0)" class="ge-action ge-action-animated ge-text-blue" ng-click="editContact()"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
+		<a href="javascript:void(0)" class="ge-action ge-action-animated ge-text-blue" ng-click="editContact()" ><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
 	</div>
 </div>
