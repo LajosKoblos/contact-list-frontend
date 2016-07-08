@@ -25,7 +25,7 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
 
 	contactGroupService.listGroups().then(function (groups) {
 
-		$scope.groups = groups;
+		$scope.groups = groups.sort(function(a,b){return a.displayName.localeCompare(b.displayName);});
 		$scope.contacts = [];
         $scope.contact={};
         if (groups.length > 0) {
@@ -37,7 +37,7 @@ angular.module('myApp.groupsContactsShow', ['ngRoute'])
                 contact.id = contact.links[0].href.split('/').slice(-1).pop();
 			});
 
-			$scope.contacts = contacts;
+			$scope.contacts = contacts.sort(function(a,b){return a.firstName.localeCompare(b.firstName);});
             if (contacts.length > 0) {
 
                 $scope.currentContactId = (!$routeParams.contactId && $scope.state !== 'new') ? $scope.contacts[0].id : $routeParams.contactId;

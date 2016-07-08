@@ -22,8 +22,9 @@ angular.module('myApp.groups', ['ngRoute'])
 
 	contactGroupService.listGroups().then(function (groups) {
 		
-		$scope.groups = groups;
+		$scope.groups = groups.sort(function(a,b){return a.displayName.localeCompare(b.displayName);});
 		if (groups.length > 0) {
+
 		$scope.currentGroupId = (!$routeParams.groupId) ? $scope.groups[0].name : $routeParams.groupId;
 
 
