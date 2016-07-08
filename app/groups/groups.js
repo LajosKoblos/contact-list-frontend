@@ -43,7 +43,7 @@ angular.module('myApp.groups', ['ngRoute'])
 		var group = { "id": { "userName":$rootScope.userName, "contactGroupName": $scope.group.name }, "displayName":$scope.group.displayName }
 
 		contactGroupService.createGroup(group).then(function ( response ) {
-			$location.path('/groups/' + $scope.currentGroupId + '/contacts/');
+			$location.path('/groups/' + $scope.group.name + '/contacts/');
 		}, function ( errorResponse ) {
 			$scope.errors = errorResponse.fields;
 		});
