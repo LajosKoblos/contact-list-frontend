@@ -1,0 +1,104 @@
+<!-- DETAILED CONTACT SEARCH -->
+<div class="ge-search ge-bg-light-gray">
+    <div class="ge-list-title">
+        Search
+    </div>
+
+    <ul class="ge-form" id="ge-search-box">
+        <li class="ge-form-group">
+            <input type="text" name="first_name" placeholder="First name" ng-model="contact.firstName">
+        </li>
+        <li class="ge-form-group">
+            <input type="text" name="last_name" placeholder="Last name" ng-model="contact.last_name">
+        </li>
+        <li class="ge-form-group">
+            <input type="text" name="work_email" placeholder="Work email" ng-model="contact.work_email">
+        </li>
+        <li class="ge-form-group">
+            <input type="text" name="home_email" placeholder="Home email" ng-model="contact.home_email">
+        </li>
+        <li class="ge-form-group">
+            <input type="text" name="nick_name" placeholder="Nick name" ng-model="contact.nick_name">
+        </li>
+        <li class="ge-form-group">
+            <input type="text" name="job_title" placeholder="Job title" ng-model="contact.job_title">
+        </li>
+
+        <li class="ge-form-group">
+            <input type="submit" name="submit" ng-click="detailedSearch()" ;>
+        </li>
+
+    </ul>
+</div>
+
+<!-- CONTACTS -->
+<div class="ge-list ge-bg-x-light-gray">
+    <div class="ge-list-search">
+        <input id="filterName" type="text" placeholder="Start typing..." ng-model="filterName"
+               ng-model-options="{ debounce : 250 }">
+    </div>
+    <ul>
+        <li ng-repeat="responseContact in responseContacts | filter:{$:filterName}"
+            ng-class="{ 'ge-list-item-selected': responseContact.id == currentContactId }">
+            <a ng-click="refreshContact(responseContact)">
+                {{ responseContact.firstName }} , {{ responseContact.lastName }}
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- CONTACT SHOW -->
+<div class="ge-details ge-bg-white" ng-if="responseContact">
+
+    <div class="ge-details-content">
+
+        <div class="ge-details-title">{{ responseContact.firstName }} {{ responseContact.lastName }}</div>
+
+        <ul class="ge-details-list">
+            <li>
+                <div class="ge-details-list-key">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    First name
+                </div>
+                <div class="ge-details-list-value">{{ responseContact.firstName }}</div>
+            </li>
+            <li>
+                <div class="ge-details-list-key">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    Last name
+                </div>
+                <div class="ge-details-list-value">{{ responseContact.lastName }}</div>
+            </li>
+            <li>
+                <div class="ge-details-list-key">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    Work email
+                </div>
+                <div class="ge-details-list-value">{{ responseContact.workEmail }}</div>
+            </li>
+            <li>
+                <div class="ge-details-list-key">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    Home email
+                </div>
+                <div class="ge-details-list-value">{{ responseContact.homeEmail }}</div>
+            </li>
+            <li>
+                <div class="ge-details-list-key">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    Nick name
+                </div>
+                <div class="ge-details-list-value">{{ responseContact.nickName }}</div>
+            </li>
+            <li>
+                <div class="ge-details-list-key">
+                    <i class="fa fa-suitcase" aria-hidden="true"></i>
+                    Job title
+                </div>
+                <div class="ge-details-list-value">{{ responseContact.jobTitle }}</div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="ge-details ge-bg-white" ng-if="!responseContact">
+</div>
